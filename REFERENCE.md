@@ -281,7 +281,7 @@ already installed.  If the fact is unavailable, it defaults to '1.6.0'.
 You may need to set this manually to get a working and idempotent
 configuration.
 
-Default value: `pick(fact('nginx_version'), '1.6.0')`
+Default value: `pick(fact('nginx_version'), '1.16.0')`
 
 ##### <a name="-nginx--debug_connections"></a>`debug_connections`
 
@@ -807,7 +807,7 @@ Default value: `20`
 
 ##### <a name="-nginx--gzip_http_version"></a>`gzip_http_version`
 
-Data type: `Variant[Enum['1.0','1.1'], Float]`
+Data type: `Enum['1.0','1.1']`
 
 
 
@@ -903,7 +903,7 @@ Default value: `'65s'`
 
 ##### <a name="-nginx--keepalive_requests"></a>`keepalive_requests`
 
-Data type: `Variant[Integer, String]`
+Data type: `Integer`
 
 
 
@@ -2918,7 +2918,7 @@ Default value: `'on'`
 
 Data type: `Enum['on', 'off']`
 
-Wheter to use proxy_protocol
+Wheter to use proxy_protocol, only suppported with nginx >= 1.19.8
 
 Default value: `'off'`
 
@@ -2926,7 +2926,7 @@ Default value: `'off'`
 
 Data type: `Enum['on', 'off']`
 
-Wheter to use proxy_smtp_auth
+Wheter to use proxy_smtp_auth, only suppported with nginx >= 1.19.4
 
 Default value: `'off'`
 
@@ -3080,7 +3080,7 @@ Create a new mapping entry for NGINX
 nginx::resource::map { 'backend_pool':
   ensure    => present,
   hostnames => true,
-  default   => 'ny-pool-1,
+  default   => 'ny-pool-1',
   string    => '$http_host',
   mappings  => {
     '*.nyc.example.com' => 'ny-pool-1',
@@ -3322,6 +3322,7 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`include_files`](#-nginx--resource--server--include_files)
 * [`access_log`](#-nginx--resource--server--access_log)
 * [`error_log`](#-nginx--resource--server--error_log)
+* [`error_log_severity`](#-nginx--resource--server--error_log_severity)
 * [`passenger_cgi_param`](#-nginx--resource--server--passenger_cgi_param)
 * [`passenger_set_header`](#-nginx--resource--server--passenger_set_header)
 * [`passenger_env_var`](#-nginx--resource--server--passenger_env_var)
@@ -4177,9 +4178,16 @@ Default value: `undef`
 
 Data type: `Optional[Variant[String, Array]]`
 
-Where to write error log. May add additional options like error level to
-the end. May set to 'absent', in which case it will be omitted in this
+Where to write error log. May be set to 'absent', in which case it will be omitted in this
 server stanza (and default to nginx.conf setting)
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--error_log_severity"></a>`error_log_severity`
+
+Data type: `Optional[Nginx::ErrorLogSeverity]`
+
+Optional error level
 
 Default value: `undef`
 

@@ -48,7 +48,7 @@ describe 'nginx' do
 
             it do
               is_expected.to contain_yumrepo('nginx-release').with(
-                'baseurl'  => "https://nginx.org/packages/#{%w[CentOS VirtuozzoLinux].include?(facts[:operatingsystem]) ? 'centos' : 'rhel'}/#{facts[:operatingsystemmajrelease]}/$basearch/",
+                'baseurl'  => "https://nginx.org/packages/#{%w[CentOS VirtuozzoLinux OracleLinux].include?(facts[:operatingsystem]) ? 'centos' : 'rhel'}/#{facts[:operatingsystemmajrelease]}/$basearch/",
                 'descr'    => 'nginx repo',
                 'enabled'  => '1',
                 'gpgcheck' => '1',
@@ -74,7 +74,7 @@ describe 'nginx' do
 
             it do
               is_expected.to contain_yumrepo('nginx-release').with(
-                'baseurl'  => "https://nginx.org/packages/#{%w[CentOS VirtuozzoLinux].include?(facts[:operatingsystem]) ? 'centos' : 'rhel'}/#{facts[:operatingsystemmajrelease]}/$basearch/",
+                'baseurl'  => "https://nginx.org/packages/#{%w[CentOS VirtuozzoLinux OracleLinux].include?(facts[:operatingsystem]) ? 'centos' : 'rhel'}/#{facts[:operatingsystemmajrelease]}/$basearch/",
                 'descr'    => 'nginx repo',
                 'enabled'  => '1',
                 'gpgcheck' => '1',
@@ -91,7 +91,7 @@ describe 'nginx' do
 
             it do
               is_expected.to contain_yumrepo('nginx-release').with(
-                'baseurl' => "https://nginx.org/packages/mainline/#{%w[CentOS VirtuozzoLinux].include?(facts[:operatingsystem]) ? 'centos' : 'rhel'}/#{facts[:operatingsystemmajrelease]}/$basearch/"
+                'baseurl' => "https://nginx.org/packages/mainline/#{%w[CentOS VirtuozzoLinux OracleLinux].include?(facts[:operatingsystem]) ? 'centos' : 'rhel'}/#{facts[:operatingsystemmajrelease]}/$basearch/"
               )
             end
 
@@ -189,13 +189,8 @@ describe 'nginx' do
             let(:params) { { package_source: 'passenger' } }
 
             it { is_expected.to contain_package('nginx') }
+            it { is_expected.to contain_package('libnginx-mod-http-passenger') }
 
-            if (facts.dig(:os, 'name') == 'Debian' && %w[10 11].include?(facts.dig(:os, 'release', 'major'))) ||
-               (facts.dig(:os, 'name') == 'Ubuntu' && %w[bionic focal jammy].include?(facts.dig(:os, 'distro', 'codename')))
-              it { is_expected.to contain_package('libnginx-mod-http-passenger') }
-            else
-              it { is_expected.to contain_package('passenger') }
-            end
             it do
               is_expected.to contain_apt__source('nginx').with(
                 'location' => 'https://oss-binaries.phusionpassenger.com/apt/passenger',
