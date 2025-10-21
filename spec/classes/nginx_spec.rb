@@ -1551,37 +1551,7 @@ describe 'nginx' do
 
             it do
               is_expected.to contain_file('/etc/nginx/nginx.conf').with_content(
-                %r{  gzip_comp_level   1;},
-              )
-            end
-
-            it do
-              is_expected.to contain_file('/etc/nginx/nginx.conf').with_content(
                 %r{  gzip_disable      msie6;},
-              )
-            end
-
-            it do
-              is_expected.to contain_file('/etc/nginx/nginx.conf').with_content(
-                %r{  gzip_min_length   20;},
-              )
-            end
-
-            it do
-              is_expected.to contain_file('/etc/nginx/nginx.conf').with_content(
-                %r{  gzip_http_version 1.1;},
-              )
-            end
-
-            it do
-              is_expected.to contain_file('/etc/nginx/nginx.conf').with_content(
-                %r{  gzip_vary         off;},
-              )
-            end
-
-            it do
-              is_expected.to contain_file('/etc/nginx/nginx.conf').with_content(
-                %r{  gzip_proxied      off;},
               )
             end
           end

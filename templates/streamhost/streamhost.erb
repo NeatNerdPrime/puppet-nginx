@@ -26,8 +26,12 @@ server {
     <%= line %>
   <% end %>
 
+<% if @proxy_read_timeout -%>
   proxy_timeout         <%= @proxy_read_timeout %>;
+<% end -%>
+<% if @proxy_connect_timeout -%>
   proxy_connect_timeout <%= @proxy_connect_timeout %>;
+<% end -%>
   proxy_pass            <%= @proxy %>;
 
   <% Array(@raw_append).each do |line| -%>

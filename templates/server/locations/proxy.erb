@@ -1,8 +1,14 @@
 <% if @proxy -%>
     proxy_pass            <%= @proxy %>;
+<% if @proxy_read_timeout -%>
     proxy_read_timeout    <%= @proxy_read_timeout %>;
+<% end -%>
+<% if @proxy_connect_timeout -%>
     proxy_connect_timeout <%= @proxy_connect_timeout %>;
+<% end -%>
+<% if @proxy_send_timeout -%>
     proxy_send_timeout    <%= @proxy_send_timeout %>;
+<% end -%>
 <% Array(@proxy_redirect).each do |value| -%>
     proxy_redirect          <%= value %>;
 <% end -%>

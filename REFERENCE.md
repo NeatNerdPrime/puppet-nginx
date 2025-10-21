@@ -537,7 +537,7 @@ Default value: `'error'`
 
 ##### <a name="-nginx--pid"></a>`pid`
 
-Data type: `Variant[Stdlib::Absolutepath,Boolean]`
+Data type: `Variant[Stdlib::Absolutepath, Boolean]`
 
 
 
@@ -641,63 +641,63 @@ Default value: `undef`
 
 ##### <a name="-nginx--accept_mutex"></a>`accept_mutex`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'on'`
+Default value: `undef`
 
 ##### <a name="-nginx--accept_mutex_delay"></a>`accept_mutex_delay`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'500ms'`
+Default value: `undef`
 
 ##### <a name="-nginx--client_body_buffer_size"></a>`client_body_buffer_size`
 
-Data type: `Nginx::Size`
+Data type: `Optional[Nginx::Size]`
 
 
 
-Default value: `'128k'`
+Default value: `undef`
 
 ##### <a name="-nginx--client_max_body_size"></a>`client_max_body_size`
 
-Data type: `Nginx::Size`
+Data type: `Optional[Nginx::Size]`
 
 
 
-Default value: `'10m'`
+Default value: `undef`
 
 ##### <a name="-nginx--client_body_timeout"></a>`client_body_timeout`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'60s'`
+Default value: `undef`
 
 ##### <a name="-nginx--send_timeout"></a>`send_timeout`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'60s'`
+Default value: `undef`
 
 ##### <a name="-nginx--lingering_timeout"></a>`lingering_timeout`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'5s'`
+Default value: `undef`
 
 ##### <a name="-nginx--lingering_close"></a>`lingering_close`
 
-Data type: `Optional[Enum['on','off','always']]`
+Data type: `Optional[Enum['on', 'off', 'always']]`
 
 
 
@@ -769,7 +769,7 @@ Default value: `'500m'`
 
 ##### <a name="-nginx--fastcgi_cache_path"></a>`fastcgi_cache_path`
 
-Data type: `Optional[Variant[Hash, String[1]]]`
+Data type: `Optional[Variant[Hash,String[1]]]`
 
 
 
@@ -785,11 +785,11 @@ Default value: `undef`
 
 ##### <a name="-nginx--gzip"></a>`gzip`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--gzip_buffers"></a>`gzip_buffers`
 
@@ -801,11 +801,11 @@ Default value: `undef`
 
 ##### <a name="-nginx--gzip_comp_level"></a>`gzip_comp_level`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `1`
+Default value: `undef`
 
 ##### <a name="-nginx--gzip_disable"></a>`gzip_disable`
 
@@ -817,31 +817,31 @@ Default value: `'msie6'`
 
 ##### <a name="-nginx--gzip_min_length"></a>`gzip_min_length`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `20`
+Default value: `undef`
 
 ##### <a name="-nginx--gzip_http_version"></a>`gzip_http_version`
 
-Data type: `Enum['1.0','1.1']`
+Data type: `Optional[Enum['1.0', '1.1']]`
 
 
 
-Default value: `'1.1'`
+Default value: `undef`
 
 ##### <a name="-nginx--gzip_proxied"></a>`gzip_proxied`
 
-Data type: `Variant[Nginx::GzipProxied, Array[Nginx::GzipProxied]]`
+Data type: `Optional[Variant[Nginx::GzipProxied, Array[Nginx::GzipProxied]]]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--gzip_types"></a>`gzip_types`
 
-Data type: `Optional[Variant[String[1],Array[String[1]]]]`
+Data type: `Optional[Variant[String[1], Array[String[1]]]]`
 
 
 
@@ -849,11 +849,11 @@ Default value: `undef`
 
 ##### <a name="-nginx--gzip_vary"></a>`gzip_vary`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--gzip_static"></a>`gzip_static`
 
@@ -897,35 +897,35 @@ Default value: `undef`
 
 ##### <a name="-nginx--http_tcp_nodelay"></a>`http_tcp_nodelay`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'on'`
+Default value: `undef`
 
 ##### <a name="-nginx--http_tcp_nopush"></a>`http_tcp_nopush`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--keepalive_timeout"></a>`keepalive_timeout`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'65s'`
+Default value: `undef`
 
 ##### <a name="-nginx--keepalive_requests"></a>`keepalive_requests`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `100`
+Default value: `undef`
 
 ##### <a name="-nginx--log_format"></a>`log_format`
 
@@ -985,31 +985,31 @@ Default value: `false`
 
 ##### <a name="-nginx--multi_accept"></a>`multi_accept`
 
-Data type: `String`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--names_hash_bucket_size"></a>`names_hash_bucket_size`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `64`
+Default value: `undef`
 
 ##### <a name="-nginx--names_hash_max_size"></a>`names_hash_max_size`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `512`
+Default value: `undef`
 
 ##### <a name="-nginx--nginx_cfg_prepend"></a>`nginx_cfg_prepend`
 
-Data type: `Variant[Boolean,Array,Hash]`
+Data type: `Variant[Boolean, Array, Hash]`
 
 
 
@@ -1017,19 +1017,19 @@ Default value: `false`
 
 ##### <a name="-nginx--proxy_buffers"></a>`proxy_buffers`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 
 
-Default value: `'32 4k'`
+Default value: `undef`
 
 ##### <a name="-nginx--proxy_buffer_size"></a>`proxy_buffer_size`
 
-Data type: `Nginx::Size`
+Data type: `Optional[Nginx::Size]`
 
 
 
-Default value: `'8k'`
+Default value: `undef`
 
 ##### <a name="-nginx--proxy_cache_inactive"></a>`proxy_cache_inactive`
 
@@ -1105,19 +1105,19 @@ Default value: `undef`
 
 ##### <a name="-nginx--proxy_connect_timeout"></a>`proxy_connect_timeout`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'90s'`
+Default value: `undef`
 
 ##### <a name="-nginx--proxy_headers_hash_bucket_size"></a>`proxy_headers_hash_bucket_size`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `64`
+Default value: `undef`
 
 ##### <a name="-nginx--proxy_headers_hash_max_size"></a>`proxy_headers_hash_max_size`
 
@@ -1141,11 +1141,11 @@ Data type: `Nginx::Time`
 
 
 
-Default value: `'90s'`
+Default value: `'60s'`
 
 ##### <a name="-nginx--proxy_redirect"></a>`proxy_redirect`
 
-Data type: `Optional[Variant[Array[String],String]]`
+Data type: `Optional[Variant[Array[String], String]]`
 
 
 
@@ -1157,7 +1157,7 @@ Data type: `Nginx::Time`
 
 
 
-Default value: `'90s'`
+Default value: `'60s'`
 
 ##### <a name="-nginx--proxy_set_header"></a>`proxy_set_header`
 
@@ -1258,19 +1258,19 @@ Default value: `undef`
 
 ##### <a name="-nginx--sendfile"></a>`sendfile`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'on'`
+Default value: `undef`
 
 ##### <a name="-nginx--server_tokens"></a>`server_tokens`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'on'`
+Default value: `undef`
 
 ##### <a name="-nginx--spdy"></a>`spdy`
 
@@ -1290,19 +1290,19 @@ Default value: `'off'`
 
 ##### <a name="-nginx--ssl_stapling"></a>`ssl_stapling`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--ssl_stapling_verify"></a>`ssl_stapling_verify`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 
 
-Default value: `'off'`
+Default value: `undef`
 
 ##### <a name="-nginx--snippets_dir"></a>`snippets_dir`
 
@@ -1322,27 +1322,27 @@ Default value: `true`
 
 ##### <a name="-nginx--types_hash_bucket_size"></a>`types_hash_bucket_size`
 
-Data type: `Variant[Integer,String]`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `'512'`
+Default value: `undef`
 
 ##### <a name="-nginx--types_hash_max_size"></a>`types_hash_max_size`
 
-Data type: `Variant[Integer,String]`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `'1024'`
+Default value: `undef`
 
 ##### <a name="-nginx--worker_connections"></a>`worker_connections`
 
-Data type: `Integer`
+Data type: `Optional[Integer]`
 
 
 
-Default value: `1024`
+Default value: `undef`
 
 ##### <a name="-nginx--ssl_prefer_server_ciphers"></a>`ssl_prefer_server_ciphers`
 
@@ -1378,19 +1378,19 @@ Default value: `undef`
 
 ##### <a name="-nginx--ssl_protocols"></a>`ssl_protocols`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 
 
-Default value: `'TLSv1 TLSv1.1 TLSv1.2'`
+Default value: `undef`
 
 ##### <a name="-nginx--ssl_ciphers"></a>`ssl_ciphers`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 
 
-Default value: `'ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-RSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-RSA-AES256-SHA256:DHE-RSA-AES256-SHA:ECDHE-ECDSA-DES-CBC3-SHA:ECDHE-RSA-DES-CBC3-SHA:EDH-RSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:DES-CBC3-SHA:!DSS'`
+Default value: `undef`
 
 ##### <a name="-nginx--ssl_dhparam"></a>`ssl_dhparam`
 
@@ -1410,19 +1410,19 @@ Default value: `undef`
 
 ##### <a name="-nginx--ssl_session_cache"></a>`ssl_session_cache`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 
 
-Default value: `'shared:SSL:10m'`
+Default value: `undef`
 
 ##### <a name="-nginx--ssl_session_timeout"></a>`ssl_session_timeout`
 
-Data type: `Nginx::Time`
+Data type: `Optional[Nginx::Time]`
 
 
 
-Default value: `'5m'`
+Default value: `undef`
 
 ##### <a name="-nginx--ssl_session_tickets"></a>`ssl_session_tickets`
 
@@ -2179,7 +2179,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--location--proxy_redirect"></a>`proxy_redirect`
 
-Data type: `Optional[Variant[Array[String],String]]`
+Data type: `Optional[Variant[Array[String], String]]`
 
 sets the text, which must be changed in response-header "Location" and
 "Refresh" in the response of the proxied server.
@@ -2188,7 +2188,7 @@ Default value: `$nginx::proxy_redirect`
 
 ##### <a name="-nginx--resource--location--proxy_read_timeout"></a>`proxy_read_timeout`
 
-Data type: `String`
+Data type: `Optional[Nginx::Time]`
 
 Override the default the proxy read timeout value of 90 seconds
 
@@ -2196,7 +2196,7 @@ Default value: `$nginx::proxy_read_timeout`
 
 ##### <a name="-nginx--resource--location--proxy_connect_timeout"></a>`proxy_connect_timeout`
 
-Data type: `String`
+Data type: `Optional[Nginx::Time]`
 
 Override the default the proxy connect timeout value of 90 seconds
 
@@ -2204,7 +2204,7 @@ Default value: `$nginx::proxy_connect_timeout`
 
 ##### <a name="-nginx--resource--location--proxy_send_timeout"></a>`proxy_send_timeout`
 
-Data type: `String`
+Data type: `Optional[Nginx::Time]`
 
 Override the default the proxy send timeout
 value of 90 seconds
@@ -2387,7 +2387,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--location--limit_zone"></a>`limit_zone`
 
-Data type: `Optional[Variant[String[1],Array[String[1],1]]]`
+Data type: `Optional[Variant[String[1], Array[String[1], 1]]]`
 
 Apply a limit_req_zone to the location. Expects a string or array of
 strings indicating a previously defined limit_req_zone in the main nginx
@@ -2992,7 +2992,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--mailhost--ssl_ciphers"></a>`ssl_ciphers`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 Override default SSL ciphers.
 
@@ -3060,7 +3060,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--mailhost--ssl_prefer_server_ciphers"></a>`ssl_prefer_server_ciphers`
 
-Data type: `Enum['on', 'off']`
+Data type: `Optional[Enum['on', 'off']]`
 
 Specifies that server ciphers should be preferred over client ciphers when
 using the SSLv3 and TLS protocols.
@@ -3069,7 +3069,7 @@ Default value: `$nginx::ssl_prefer_server_ciphers`
 
 ##### <a name="-nginx--resource--mailhost--ssl_protocols"></a>`ssl_protocols`
 
-Data type: `String`
+Data type: `Optional[String]`
 
 SSL protocols enabled.
 
@@ -3879,7 +3879,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--server--proxy_read_timeout"></a>`proxy_read_timeout`
 
-Data type: `String`
+Data type: `Optional[Nginx::Time]`
 
 Override the default proxy read timeout value of 90 seconds
 
@@ -3887,7 +3887,7 @@ Default value: `$nginx::proxy_read_timeout`
 
 ##### <a name="-nginx--resource--server--proxy_send_timeout"></a>`proxy_send_timeout`
 
-Data type: `String`
+Data type: `Optional[Nginx::Time]`
 
 Override the default proxy send timeout value of 90 seconds
 
@@ -3895,7 +3895,7 @@ Default value: `$nginx::proxy_send_timeout`
 
 ##### <a name="-nginx--resource--server--proxy_redirect"></a>`proxy_redirect`
 
-Data type: `Optional[Variant[Array[String],String]]`
+Data type: `Optional[Variant[Array[String], String]]`
 
 Override the default proxy_redirect value of off.
 
@@ -4705,7 +4705,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--server--proxy_connect_timeout"></a>`proxy_connect_timeout`
 
-Data type: `Any`
+Data type: `Optional[Nginx::Time]`
 
 
 
@@ -4991,7 +4991,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--streamhost--proxy_read_timeout"></a>`proxy_read_timeout`
 
-Data type: `String`
+Data type: `Optional[Nginx::Time]`
 
 Override the default the proxy read timeout value of 90 seconds
 
@@ -5052,7 +5052,7 @@ Default value: `$nginx::global_mode`
 
 ##### <a name="-nginx--resource--streamhost--proxy_connect_timeout"></a>`proxy_connect_timeout`
 
-Data type: `Any`
+Data type: `Optional[Nginx::Time]`
 
 
 
@@ -5397,7 +5397,7 @@ Default value: `'http'`
 
 ##### <a name="-nginx--resource--upstream--member--server"></a>`server`
 
-Data type: `Optional[Nginx::UpstreamMemberServer]`
+Data type: `Nginx::UpstreamMemberServer`
 
 Hostname or IP of the upstream member server
 

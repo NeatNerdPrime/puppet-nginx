@@ -1216,20 +1216,14 @@ describe 'nginx::resource::location' do
             {
               title: 'should set proxy_read_timeout',
               attr: 'proxy_read_timeout',
-              value: 'value',
-              match: %r{\s+proxy_read_timeout\s+value;},
+              value: '20m',
+              match: %r{\s+proxy_read_timeout\s+20m;},
             },
             {
               title: 'should set proxy_connect_timeout',
               attr: 'proxy_connect_timeout',
-              value: 'value',
-              match: %r{\s+proxy_connect_timeout\s+value;},
-            },
-            {
-              title: 'should set proxy_read_timeout',
-              attr: 'proxy_read_timeout',
-              value: 'value',
-              match: %r{\s+proxy_read_timeout\s+value;},
+              value: 10,
+              match: %r{\s+proxy_connect_timeout\s+10;},
             },
             {
               title: 'should set proxy headers',
