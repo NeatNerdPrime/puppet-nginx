@@ -245,7 +245,13 @@ class nginx::config {
     }
   }
 
-  if $fastcgi_cache_path {
+  if $fastcgi_cache_path =~ Hash {
+    file { $fastcgi_cache_path.keys():
+      ensure => directory,
+      owner  => $daemon_user,
+      mode   => '0700',
+    }
+  } elsif $fastcgi_cache_path =~ String {
     file { $fastcgi_cache_path:
       ensure => directory,
       owner  => $daemon_user,
