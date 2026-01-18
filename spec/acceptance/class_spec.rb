@@ -30,7 +30,7 @@ describe 'nginx class:' do
       pp = "class { 'nginx': }"
       # Run it twice and test for idempotency
       apply_manifest(pp, catch_failures: true)
-      expect(apply_manifest(pp, catch_failures: true).exit_code).to be_zero
+      apply_manifest(pp, catch_changes: true)
     end
 
     describe package('nginx') do
