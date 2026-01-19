@@ -49,6 +49,18 @@
 # @param reset_timedout_connection
 #   Enables or disables resetting timed out connections and connections closed
 #   with the non-standard code 444.
+# @param real_ip_header
+#   Defines the request header field whose value will be used to replace the
+#   client address. See http://nginx.org/en/docs/http/ngx_http_realip_module.html
+# @param real_ip_recursive
+#   If disabled, the original client address that matches one of the trusted
+#   addresses is replaced by the last address sent in the request header field.
+#   If enabled, the original client address that matches one of the trusted
+#   addresses is replaced by the last non-trusted address sent in the request
+#   header field.
+# @param set_real_ip_from
+#   Defines trusted addresses that are known to send correct replacement
+#   addresses.
 # @param proxy
 #   Proxy server(s) for the root location to connect to. Accepts a single
 #   value, can be used in conjunction with nginx::resource::upstream
@@ -375,6 +387,9 @@ define nginx::resource::server (
   Optional[Enum['html', 'xml', 'json', 'jsonp']] $autoindex_format               = undef,
   Optional[Enum['on', 'off']] $autoindex_localtime                               = undef,
   Optional[Enum['on', 'off']] $reset_timedout_connection                         = undef,
+  Optional[String[1]] $real_ip_header                                            = undef,
+  Optional[Enum['on', 'off']] $real_ip_recursive                                 = undef,
+  Optional[Variant[String[1], Array[String[1]]]] $set_real_ip_from               = undef,
   Array[String] $server_name                                                     = [$name],
   Optional[String] $www_root                                                     = undef,
   Boolean $rewrite_www_to_non_www                                                = false,

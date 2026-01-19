@@ -180,6 +180,18 @@
 # @param reset_timedout_connection
 #   Enables or disables resetting timed out connections and connections closed
 #   with the non-standard code 444.
+# @param real_ip_header
+#   Defines the request header field whose value will be used to replace the
+#   client address. See http://nginx.org/en/docs/http/ngx_http_realip_module.html
+# @param real_ip_recursive
+#   If disabled, the original client address that matches one of the trusted
+#   addresses is replaced by the last address sent in the request header field.
+#   If enabled, the original client address that matches one of the trusted
+#   addresses is replaced by the last non-trusted address sent in the request
+#   header field.
+# @param set_real_ip_from
+#   Defines trusted addresses that are known to send correct replacement
+#   addresses.
 # @param format_log
 #   Log_format to use with the defined access_log
 # @param access_log
@@ -327,6 +339,9 @@ define nginx::resource::location (
   Hash $add_header                                                 = {},
   Optional[Enum['on', 'off', 'always']] $gzip_static               = undef,
   Optional[Enum['on', 'off']] $reset_timedout_connection           = undef,
+  Optional[String[1]] $real_ip_header                              = undef,
+  Optional[Enum['on', 'off']] $real_ip_recursive                   = undef,
+  Optional[Variant[String[1], Array[String[1]]]] $set_real_ip_from = undef,
   Optional[Variant[Array[String[1], 1], String[1]]] $access_log    = undef,
   Optional[Variant[Array[String[1], 1], String[1]]] $error_log     = undef,
   Optional[String[1]] $format_log                                  = $nginx::http_format_log,

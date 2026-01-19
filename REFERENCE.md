@@ -192,6 +192,9 @@ The following parameters are available in the `nginx` class:
 * [`proxy_ignore_header`](#-nginx--proxy_ignore_header)
 * [`proxy_max_temp_file_size`](#-nginx--proxy_max_temp_file_size)
 * [`proxy_busy_buffers_size`](#-nginx--proxy_busy_buffers_size)
+* [`real_ip_header`](#-nginx--real_ip_header)
+* [`real_ip_recursive`](#-nginx--real_ip_recursive)
+* [`set_real_ip_from`](#-nginx--set_real_ip_from)
 * [`sendfile`](#-nginx--sendfile)
 * [`server_tokens`](#-nginx--server_tokens)
 * [`spdy`](#-nginx--spdy)
@@ -1214,6 +1217,36 @@ Data type: `Optional[Nginx::Size]`
 
 Default value: `undef`
 
+##### <a name="-nginx--real_ip_header"></a>`real_ip_header`
+
+Data type: `Optional[String[1]]`
+
+Defines the request header field whose value will be used to replace the
+client address. See http://nginx.org/en/docs/http/ngx_http_realip_module.html
+
+Default value: `undef`
+
+##### <a name="-nginx--real_ip_recursive"></a>`real_ip_recursive`
+
+Data type: `Optional[Enum['on', 'off']]`
+
+If disabled, the original client address that matches one of the trusted
+addresses is replaced by the last address sent in the request header field.
+If enabled, the original client address that matches one of the trusted
+addresses is replaced by the last non-trusted address sent in the request
+header field.
+
+Default value: `undef`
+
+##### <a name="-nginx--set_real_ip_from"></a>`set_real_ip_from`
+
+Data type: `Optional[Variant[String[1], Array[String[1]]]]`
+
+Defines trusted addresses that are known to send correct replacement
+addresses.
+
+Default value: `undef`
+
 ##### <a name="-nginx--sendfile"></a>`sendfile`
 
 Data type: `Enum['on', 'off']`
@@ -1987,6 +2020,9 @@ The following parameters are available in the `nginx::resource::location` define
 * [`add_header`](#-nginx--resource--location--add_header)
 * [`gzip_static`](#-nginx--resource--location--gzip_static)
 * [`reset_timedout_connection`](#-nginx--resource--location--reset_timedout_connection)
+* [`real_ip_header`](#-nginx--resource--location--real_ip_header)
+* [`real_ip_recursive`](#-nginx--resource--location--real_ip_recursive)
+* [`set_real_ip_from`](#-nginx--resource--location--set_real_ip_from)
 * [`format_log`](#-nginx--resource--location--format_log)
 * [`access_log`](#-nginx--resource--location--access_log)
 * [`error_log`](#-nginx--resource--location--error_log)
@@ -2611,6 +2647,36 @@ Data type: `Optional[Enum['on', 'off']]`
 
 Enables or disables resetting timed out connections and connections closed
 with the non-standard code 444.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--real_ip_header"></a>`real_ip_header`
+
+Data type: `Optional[String[1]]`
+
+Defines the request header field whose value will be used to replace the
+client address. See http://nginx.org/en/docs/http/ngx_http_realip_module.html
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--real_ip_recursive"></a>`real_ip_recursive`
+
+Data type: `Optional[Enum['on', 'off']]`
+
+If disabled, the original client address that matches one of the trusted
+addresses is replaced by the last address sent in the request header field.
+If enabled, the original client address that matches one of the trusted
+addresses is replaced by the last non-trusted address sent in the request
+header field.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--set_real_ip_from"></a>`set_real_ip_from`
+
+Data type: `Optional[Variant[String[1], Array[String[1]]]]`
+
+Defines trusted addresses that are known to send correct replacement
+addresses.
 
 Default value: `undef`
 
@@ -3331,6 +3397,9 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`autoindex_format`](#-nginx--resource--server--autoindex_format)
 * [`autoindex_localtime`](#-nginx--resource--server--autoindex_localtime)
 * [`reset_timedout_connection`](#-nginx--resource--server--reset_timedout_connection)
+* [`real_ip_header`](#-nginx--resource--server--real_ip_header)
+* [`real_ip_recursive`](#-nginx--resource--server--real_ip_recursive)
+* [`set_real_ip_from`](#-nginx--resource--server--set_real_ip_from)
 * [`proxy`](#-nginx--resource--server--proxy)
 * [`proxy_read_timeout`](#-nginx--resource--server--proxy_read_timeout)
 * [`proxy_send_timeout`](#-nginx--resource--server--proxy_send_timeout)
@@ -3624,6 +3693,36 @@ Data type: `Optional[Enum['on', 'off']]`
 
 Enables or disables resetting timed out connections and connections closed
 with the non-standard code 444.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--real_ip_header"></a>`real_ip_header`
+
+Data type: `Optional[String[1]]`
+
+Defines the request header field whose value will be used to replace the
+client address. See http://nginx.org/en/docs/http/ngx_http_realip_module.html
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--real_ip_recursive"></a>`real_ip_recursive`
+
+Data type: `Optional[Enum['on', 'off']]`
+
+If disabled, the original client address that matches one of the trusted
+addresses is replaced by the last address sent in the request header field.
+If enabled, the original client address that matches one of the trusted
+addresses is replaced by the last non-trusted address sent in the request
+header field.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--set_real_ip_from"></a>`set_real_ip_from`
+
+Data type: `Optional[Variant[String[1], Array[String[1]]]]`
+
+Defines trusted addresses that are known to send correct replacement
+addresses.
 
 Default value: `undef`
 

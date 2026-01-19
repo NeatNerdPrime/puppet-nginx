@@ -972,6 +972,51 @@ describe 'nginx' do
                 match: '  proxy_busy_buffers_size 16k;'
               },
               {
+                title: 'should not set set_real_ip_from',
+                attr: 'set_real_ip_from',
+                value: :undef,
+                notmatch: 'set_real_ip_from'
+              },
+              {
+                title: 'should set set_real_ip_from with single value',
+                attr: 'set_real_ip_from',
+                value: '192.168.1.0/24',
+                match: '  set_real_ip_from        192.168.1.0/24;'
+              },
+              {
+                title: 'should set set_real_ip_from with multiple values',
+                attr: 'set_real_ip_from',
+                value: ['192.168.1.0/24', '10.0.0.0/8'],
+                match: [
+                  '  set_real_ip_from        192.168.1.0/24;',
+                  '  set_real_ip_from        10.0.0.0/8;'
+                ]
+              },
+              {
+                title: 'should not set real_ip_header',
+                attr: 'real_ip_header',
+                value: :undef,
+                notmatch: 'real_ip_header'
+              },
+              {
+                title: 'should set real_ip_header',
+                attr: 'real_ip_header',
+                value: 'X-Forwarded-For',
+                match: '  real_ip_header          X-Forwarded-For;'
+              },
+              {
+                title: 'should not set real_ip_recursive',
+                attr: 'real_ip_recursive',
+                value: :undef,
+                notmatch: 'real_ip_recursive'
+              },
+              {
+                title: 'should set real_ip_recursive',
+                attr: 'real_ip_recursive',
+                value: 'on',
+                match: '  real_ip_recursive       on;'
+              },
+              {
                 title: 'should set ssl_stapling_verify',
                 attr: 'ssl_stapling_verify',
                 value: 'on',

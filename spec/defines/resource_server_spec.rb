@@ -411,6 +411,51 @@ describe 'nginx::resource::server' do
               attr: 'reset_timedout_connection',
               value: 'on',
               match: %r{^\s+reset_timedout_connection\s+on;}
+            },
+            {
+              title: 'should not set set_real_ip_from',
+              attr: 'set_real_ip_from',
+              value: :undef,
+              notmatch: %r{set_real_ip_from}
+            },
+            {
+              title: 'should set set_real_ip_from with single value',
+              attr: 'set_real_ip_from',
+              value: '192.168.1.0/24',
+              match: %r{^\s+set_real_ip_from\s+192\.168\.1\.0/24;}
+            },
+            {
+              title: 'should set set_real_ip_from with multiple values',
+              attr: 'set_real_ip_from',
+              value: ['192.168.1.0/24', '10.0.0.0/8'],
+              match: [
+                %r{^\s+set_real_ip_from\s+192\.168\.1\.0/24;},
+                %r{^\s+set_real_ip_from\s+10\.0\.0\.0/8;}
+              ]
+            },
+            {
+              title: 'should not set real_ip_header',
+              attr: 'real_ip_header',
+              value: :undef,
+              notmatch: %r{real_ip_header}
+            },
+            {
+              title: 'should set real_ip_header',
+              attr: 'real_ip_header',
+              value: 'X-Forwarded-For',
+              match: %r{^\s+real_ip_header\s+X-Forwarded-For;}
+            },
+            {
+              title: 'should not set real_ip_recursive',
+              attr: 'real_ip_recursive',
+              value: :undef,
+              notmatch: %r{real_ip_recursive}
+            },
+            {
+              title: 'should set real_ip_recursive',
+              attr: 'real_ip_recursive',
+              value: 'on',
+              match: %r{^\s+real_ip_recursive\s+on;}
             }
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
