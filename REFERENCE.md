@@ -3415,6 +3415,7 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`passenger_pre_start`](#-nginx--resource--server--passenger_pre_start)
 * [`log_by_lua`](#-nginx--resource--server--log_by_lua)
 * [`log_by_lua_file`](#-nginx--resource--server--log_by_lua_file)
+* [`use_default_location`](#-nginx--resource--server--use_default_location)
 * [`gzip_types`](#-nginx--resource--server--gzip_types)
 * [`gzip_static`](#-nginx--resource--server--gzip_static)
 * [`owner`](#-nginx--resource--server--owner)
@@ -3439,7 +3440,6 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`location_custom_cfg_prepend`](#-nginx--resource--server--location_custom_cfg_prepend)
 * [`location_custom_cfg_append`](#-nginx--resource--server--location_custom_cfg_append)
 * [`format_log`](#-nginx--resource--server--format_log)
-* [`use_default_location`](#-nginx--resource--server--use_default_location)
 * [`rewrite_rules`](#-nginx--resource--server--rewrite_rules)
 * [`string_mappings`](#-nginx--resource--server--string_mappings)
 * [`geo_mappings`](#-nginx--resource--server--geo_mappings)
@@ -4339,6 +4339,17 @@ release, the Lua/LuaJIT bytecode to be executed.
 
 Default value: `undef`
 
+##### <a name="-nginx--resource--server--use_default_location"></a>`use_default_location`
+
+Data type: `Boolean`
+
+When true, this module creates a default location block for
+'/' that sets the root directive. Set to false if you want to define your
+own root location, or if you prefer to set 'root' in the server block
+rather than in a location block.
+
+Default value: `true`
+
 ##### <a name="-nginx--resource--server--gzip_types"></a>`gzip_types`
 
 Data type: `Optional[String]`
@@ -4530,14 +4541,6 @@ Data type: `Optional[String]`
 
 
 Default value: `$nginx::http_format_log`
-
-##### <a name="-nginx--resource--server--use_default_location"></a>`use_default_location`
-
-Data type: `Any`
-
-
-
-Default value: `true`
 
 ##### <a name="-nginx--resource--server--rewrite_rules"></a>`rewrite_rules`
 
