@@ -283,6 +283,11 @@
 #   Equivalent to log_by_lua, except that the file specified by
 #   <path-to-lua-script-file> contains the Lua code, or, as from the v0.5.0rc32
 #   release, the Lua/LuaJIT bytecode to be executed.
+# @param use_default_location
+#   When true, this module creates a default location block for
+#   '/' that sets the root directive. Set to false if you want to define your
+#   own root location, or if you prefer to set 'root' in the server block
+#   rather than in a location block.
 # @param gzip_types
 #   Defines gzip_types, nginx default is text/html
 # @param gzip_static
@@ -444,7 +449,7 @@ define nginx::resource::server (
   Optional[Variant[Array[String], String]] $passenger_pre_start                  = undef,
   Optional[String] $log_by_lua                                                   = undef,
   Optional[String] $log_by_lua_file                                              = undef,
-  $use_default_location                                                          = true,
+  Boolean $use_default_location                                                  = true,
   $rewrite_rules                                                                 = [],
   $string_mappings                                                               = {},
   $geo_mappings                                                                  = {},
