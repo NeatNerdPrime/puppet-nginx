@@ -51,9 +51,15 @@
     proxy_cache           <%= @proxy_cache %>;
 <% end -%>
 <% if @proxy_cache_valid -%>
+<% if @proxy_cache_valid.is_a?(Hash) -%>
+    <%- @proxy_cache_valid.sort_by { |k, _v| k }.each do |key, value| -%>
+    proxy_cache_valid     <%= key %> <%= value %>;
+    <%- end -%>
+<% else -%>
     <%- Array(@proxy_cache_valid).each do |line| -%>
     proxy_cache_valid     <%= line %>;
     <%- end -%>
+<% end -%>
 <% end -%>
 <% if @proxy_cache_use_stale -%>
     proxy_cache_use_stale   <%= @proxy_cache_use_stale %>;

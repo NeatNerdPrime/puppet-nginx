@@ -306,7 +306,7 @@ define nginx::resource::location (
   Optional[Enum['on', 'off']] $proxy_cache_lock                    = undef,
   Optional[Enum['on', 'off']] $proxy_cache_background_update       = undef,
   Optional[Enum['on', 'off']] $proxy_cache_convert_head            = undef,
-  Optional[Variant[Array, String]] $proxy_cache_valid              = undef,
+  Optional[Variant[Array, String, Hash[String[1], String[1]]]] $proxy_cache_valid = undef,
   Optional[Variant[Array, String]] $proxy_cache_bypass             = undef,
   Optional[String] $proxy_method                                   = undef,
   Optional[String] $proxy_http_version                             = undef,

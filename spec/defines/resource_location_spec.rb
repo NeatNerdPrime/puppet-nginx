@@ -972,6 +972,16 @@ describe 'nginx::resource::location' do
               ]
             },
             {
+              title: 'should set proxy_cache_valid when hash',
+              attr: 'proxy_cache_valid',
+              value: { '200' => '10m', '301 302' => '1m', '404' => '5s' },
+              match: [
+                %r{^\s+proxy_cache_valid\s+200 10m;},
+                %r{^\s+proxy_cache_valid\s+301 302 1m;},
+                %r{^\s+proxy_cache_valid\s+404 5s;}
+              ]
+            },
+            {
               title: 'should set proxy_cache_key',
               attr: 'proxy_cache_key',
               value: 'value',

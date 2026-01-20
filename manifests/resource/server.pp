@@ -343,7 +343,7 @@ define nginx::resource::server (
   Optional[String] $proxy_cache                                                  = undef,
   Optional[String] $proxy_cache_key                                              = undef,
   Optional[String] $proxy_cache_use_stale                                        = undef,
-  Optional[Variant[Array[String], String]] $proxy_cache_valid                    = undef,
+  Optional[Variant[Array[String], String, Hash[String[1], String[1]]]] $proxy_cache_valid = undef,
   Optional[Enum['on', 'off']] $proxy_cache_lock                                  = undef,
   Optional[Enum['on', 'off']] $proxy_cache_background_update                     = undef,
   Optional[Enum['on', 'off']] $proxy_cache_convert_head                          = undef,

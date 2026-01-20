@@ -2422,7 +2422,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--location--proxy_cache_valid"></a>`proxy_cache_valid`
 
-Data type: `Optional[Variant[Array, String]]`
+Data type: `Optional[Variant[Array, String, Hash[String[1], String[1]]]]`
 
 This directive sets the time for caching different replies.
 
@@ -4056,7 +4056,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--server--proxy_cache_valid"></a>`proxy_cache_valid`
 
-Data type: `Optional[Variant[Array[String], String]]`
+Data type: `Optional[Variant[Array[String], String, Hash[String[1], String[1]]]]`
 
 This directive sets the time for caching different replies.
 
