@@ -98,6 +98,30 @@ describe 'nginx::resource::location' do
               match: '    flv;'
             },
             {
+              title: 'should set dav_methods',
+              attr: 'dav_methods',
+              value: %w[PUT DELETE MKCOL COPY MOVE],
+              match: '    dav_methods PUT DELETE MKCOL COPY MOVE;'
+            },
+            {
+              title: 'should set dav_access',
+              attr: 'dav_access',
+              value: 'user:rw group:rw all:r',
+              match: '    dav_access user:rw group:rw all:r;'
+            },
+            {
+              title: 'should set create_full_put_path',
+              attr: 'create_full_put_path',
+              value: 'on',
+              match: '    create_full_put_path on;'
+            },
+            {
+              title: 'should set min_delete_depth',
+              attr: 'min_delete_depth',
+              value: 2,
+              match: '    min_delete_depth 2;'
+            },
+            {
               title: 'should set location_satisfy',
               attr: 'location_satisfy',
               value: 'any',

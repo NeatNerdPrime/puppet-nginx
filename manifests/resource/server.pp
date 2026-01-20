@@ -46,6 +46,18 @@
 # @param autoindex_localtime
 #   Specifies whether times in the directory listing should be output in the
 #   local time zone or UTC.
+# @param dav_methods
+#   Defines the HTTP methods allowed for WebDAV.
+#   Possible values: 'off' or an array of: 'PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'.
+#   Example: ['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE']
+# @param dav_access
+#   Sets permissions for newly created files and directories.
+#   Example: 'user:rw group:rw all:r'
+# @param create_full_put_path
+#   Enables creating intermediate directories for PUT requests.
+#   Valid values: 'on' or 'off'
+# @param min_delete_depth
+#   Minimum number of path elements in a request to allow DELETE.
 # @param reset_timedout_connection
 #   Enables or disables resetting timed out connections and connections closed
 #   with the non-standard code 444.
@@ -374,6 +386,10 @@ define nginx::resource::server (
   Optional[Enum['on', 'off']] $autoindex_exact_size                              = undef,
   Optional[Enum['html', 'xml', 'json', 'jsonp']] $autoindex_format               = undef,
   Optional[Enum['on', 'off']] $autoindex_localtime                               = undef,
+  Optional[Variant[Enum['off'], Array[Enum['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'], 1]]] $dav_methods = undef,
+  Optional[String[1]] $dav_access                                                = undef,
+  Optional[Enum['on', 'off']] $create_full_put_path                              = undef,
+  Optional[Integer[0]] $min_delete_depth                                         = undef,
   Optional[Enum['on', 'off']] $reset_timedout_connection                         = undef,
   Array[String] $server_name                                                     = [$name],
   Optional[String] $www_root                                                     = undef,
@@ -557,6 +573,10 @@ define nginx::resource::server (
       autoindex_exact_size          => $autoindex_exact_size,
       autoindex_format              => $autoindex_format,
       autoindex_localtime           => $autoindex_localtime,
+      dav_methods                   => $dav_methods,
+      dav_access                    => $dav_access,
+      create_full_put_path          => $create_full_put_path,
+      min_delete_depth              => $min_delete_depth,
       index_files                   => $index_files,
       location_custom_cfg           => $location_custom_cfg,
       location_cfg_prepend          => $location_cfg_prepend,

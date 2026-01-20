@@ -1,0 +1,12 @@
+<% if @dav_methods -%>
+    dav_methods <%= Array(@dav_methods).join(' ') %>;
+<% end -%>
+<% if @dav_access -%>
+    dav_access <%= @dav_access %>;
+<% end -%>
+<% if @create_full_put_path -%>
+    create_full_put_path <%= @create_full_put_path %>;
+<% end -%>
+<% if @min_delete_depth -%>
+    min_delete_depth <%= @min_delete_depth %>;
+<% end -%>

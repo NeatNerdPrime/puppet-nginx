@@ -3,6 +3,7 @@
 <%= scope.function_template(['nginx/server/locations/gzip.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/headers.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/stub_status.erb']) -%>
+<%= scope.function_template(['nginx/server/locations/dav.erb']) -%>
 <% if @fastcgi or @uwsgi or @proxy -%>
 <%= scope.function_template(['nginx/server/locations/proxy.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/uwsgi.erb']) -%>

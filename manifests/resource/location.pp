@@ -170,6 +170,18 @@
 # @param flv
 #   Indicates whether or not this loation can be
 #   used for flv streaming. Default: false
+# @param dav_methods
+#   Defines the HTTP methods allowed for WebDAV.
+#   Possible values: 'off' or an array of: 'PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'.
+#   Example: ['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE']
+# @param dav_access
+#   Sets permissions for newly created files and directories.
+#   Example: 'user:rw group:rw all:r'
+# @param create_full_put_path
+#   Enables creating intermediate directories for PUT requests.
+#   Valid values: 'on' or 'off'
+# @param min_delete_depth
+#   Minimum number of path elements in a request to allow DELETE.
 # @param expires
 #   Setup expires time for locations content
 # @param add_header
@@ -323,6 +335,10 @@ define nginx::resource::location (
   Integer[401, 599] $priority                                      = 500,
   Boolean $mp4                                                     = false,
   Boolean $flv                                                     = false,
+  Optional[Variant[Enum['off'], Array[Enum['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'], 1]]] $dav_methods = undef,
+  Optional[String[1]] $dav_access                                  = undef,
+  Optional[Enum['on', 'off']] $create_full_put_path                = undef,
+  Optional[Integer[0]] $min_delete_depth                           = undef,
   Optional[String] $expires                                        = undef,
   Hash $add_header                                                 = {},
   Optional[Enum['on', 'off', 'always']] $gzip_static               = undef,

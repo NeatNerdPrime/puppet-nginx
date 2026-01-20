@@ -1475,6 +1475,38 @@ describe 'nginx::resource::server' do
             it { is_expected.to contain_nginx__resource__location("#{title}-default").with_uwsgi_param('X-Custom-Param' => 'Someting') }
           end
 
+          context 'when dav_methods => ["PUT", "DELETE", "MKCOL", "COPY", "MOVE"]' do
+            let :params do
+              default_params.merge(dav_methods: %w[PUT DELETE MKCOL COPY MOVE])
+            end
+
+            it { is_expected.to contain_nginx__resource__location("#{title}-default").with_dav_methods(%w[PUT DELETE MKCOL COPY MOVE]) }
+          end
+
+          context 'when dav_access => "user:rw group:rw all:r"' do
+            let :params do
+              default_params.merge(dav_access: 'user:rw group:rw all:r')
+            end
+
+            it { is_expected.to contain_nginx__resource__location("#{title}-default").with_dav_access('user:rw group:rw all:r') }
+          end
+
+          context 'when create_full_put_path => "on"' do
+            let :params do
+              default_params.merge(create_full_put_path: 'on')
+            end
+
+            it { is_expected.to contain_nginx__resource__location("#{title}-default").with_create_full_put_path('on') }
+          end
+
+          context 'when min_delete_depth => 2' do
+            let :params do
+              default_params.merge(min_delete_depth: 2)
+            end
+
+            it { is_expected.to contain_nginx__resource__location("#{title}-default").with_min_delete_depth(2) }
+          end
+
           context 'when listen_port == ssl_port but ssl = false' do
             let :params do
               default_params.merge(listen_port: 80,

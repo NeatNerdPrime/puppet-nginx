@@ -1983,6 +1983,10 @@ The following parameters are available in the `nginx::resource::location` define
 * [`priority`](#-nginx--resource--location--priority)
 * [`mp4`](#-nginx--resource--location--mp4)
 * [`flv`](#-nginx--resource--location--flv)
+* [`dav_methods`](#-nginx--resource--location--dav_methods)
+* [`dav_access`](#-nginx--resource--location--dav_access)
+* [`create_full_put_path`](#-nginx--resource--location--create_full_put_path)
+* [`min_delete_depth`](#-nginx--resource--location--min_delete_depth)
 * [`expires`](#-nginx--resource--location--expires)
 * [`add_header`](#-nginx--resource--location--add_header)
 * [`gzip_static`](#-nginx--resource--location--gzip_static)
@@ -2579,6 +2583,42 @@ Indicates whether or not this loation can be
 used for flv streaming. Default: false
 
 Default value: `false`
+
+##### <a name="-nginx--resource--location--dav_methods"></a>`dav_methods`
+
+Data type: `Optional[Variant[Enum['off'], Array[Enum['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'], 1]]]`
+
+Defines the HTTP methods allowed for WebDAV.
+Possible values: 'off' or an array of: 'PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'.
+Example: ['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE']
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--dav_access"></a>`dav_access`
+
+Data type: `Optional[String[1]]`
+
+Sets permissions for newly created files and directories.
+Example: 'user:rw group:rw all:r'
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--create_full_put_path"></a>`create_full_put_path`
+
+Data type: `Optional[Enum['on', 'off']]`
+
+Enables creating intermediate directories for PUT requests.
+Valid values: 'on' or 'off'
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--min_delete_depth"></a>`min_delete_depth`
+
+Data type: `Optional[Integer[0]]`
+
+Minimum number of path elements in a request to allow DELETE.
+
+Default value: `undef`
 
 ##### <a name="-nginx--resource--location--expires"></a>`expires`
 
@@ -3330,6 +3370,10 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`autoindex_exact_size`](#-nginx--resource--server--autoindex_exact_size)
 * [`autoindex_format`](#-nginx--resource--server--autoindex_format)
 * [`autoindex_localtime`](#-nginx--resource--server--autoindex_localtime)
+* [`dav_methods`](#-nginx--resource--server--dav_methods)
+* [`dav_access`](#-nginx--resource--server--dav_access)
+* [`create_full_put_path`](#-nginx--resource--server--create_full_put_path)
+* [`min_delete_depth`](#-nginx--resource--server--min_delete_depth)
 * [`reset_timedout_connection`](#-nginx--resource--server--reset_timedout_connection)
 * [`proxy`](#-nginx--resource--server--proxy)
 * [`proxy_read_timeout`](#-nginx--resource--server--proxy_read_timeout)
@@ -3615,6 +3659,42 @@ Data type: `Optional[Enum['on', 'off']]`
 
 Specifies whether times in the directory listing should be output in the
 local time zone or UTC.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--dav_methods"></a>`dav_methods`
+
+Data type: `Optional[Variant[Enum['off'], Array[Enum['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'], 1]]]`
+
+Defines the HTTP methods allowed for WebDAV.
+Possible values: 'off' or an array of: 'PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE'.
+Example: ['PUT', 'DELETE', 'MKCOL', 'COPY', 'MOVE']
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--dav_access"></a>`dav_access`
+
+Data type: `Optional[String[1]]`
+
+Sets permissions for newly created files and directories.
+Example: 'user:rw group:rw all:r'
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--create_full_put_path"></a>`create_full_put_path`
+
+Data type: `Optional[Enum['on', 'off']]`
+
+Enables creating intermediate directories for PUT requests.
+Valid values: 'on' or 'off'
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--min_delete_depth"></a>`min_delete_depth`
+
+Data type: `Optional[Integer[0]]`
+
+Minimum number of path elements in a request to allow DELETE.
 
 Default value: `undef`
 
