@@ -765,7 +765,7 @@ Default value: `'500m'`
 
 ##### <a name="-nginx--fastcgi_cache_path"></a>`fastcgi_cache_path`
 
-Data type: `Optional[String]`
+Data type: `Optional[Variant[Hash, String[1]]]`
 
 
 

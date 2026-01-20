@@ -279,7 +279,7 @@ class nginx (
   String $fastcgi_cache_keys_zone                            = 'd3:100m',
   String $fastcgi_cache_levels                               = '1',
   Nginx::Size $fastcgi_cache_max_size                        = '500m',
-  Optional[String] $fastcgi_cache_path                       = undef,
+  Optional[Variant[Hash, String[1]]] $fastcgi_cache_path     = undef,
   Optional[String] $fastcgi_cache_use_stale                  = undef,
   Enum['on', 'off'] $gzip                                    = 'off',
   Optional[String] $gzip_buffers                             = undef,

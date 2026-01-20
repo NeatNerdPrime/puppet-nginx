@@ -746,6 +746,12 @@ describe 'nginx' do
                 match: %r{\s*fastcgi_cache_path\s+/path/to/proxy.cache levels=1 keys_zone=d3:100m max_size=500m inactive=20m;}
               },
               {
+                title: 'should set fastcgi_cache_path from hash',
+                attr: 'fastcgi_cache_path',
+                value: { '/path/to/proxy.cache' => 'd3:100m' },
+                match: %r{\s*fastcgi_cache_path\s+/path/to/proxy.cache levels=1 keys_zone=d3:100m max_size=500m inactive=20m;}
+              },
+              {
                 title: 'should set fastcgi_cache_use_stale',
                 attr: 'fastcgi_cache_use_stale',
                 value: 'invalid_header',
