@@ -854,6 +854,25 @@ describe 'nginx::resource::location' do
           end
         end
 
+        describe 'server_location_grpc template content' do
+          let :default_params do
+            {
+              location: 'location',
+              grpc: 'grpcs://localhost:9000',
+              server: 'server1'
+            }
+          end
+
+          context "when grpc is 'value'" do
+            let(:params) { default_params.merge(grpc: 'value') }
+
+            it 'set grpc_pass' do
+              is_expected.to contain_concat__fragment("server1-500-#{Digest::MD5.hexdigest(params[:location].to_s)}").
+                with_content(%r{\s+grpc_pass\s+value;})
+            end
+          end
+        end
+
         describe 'server_location_fastcgi template content' do
           let :default_params do
             {

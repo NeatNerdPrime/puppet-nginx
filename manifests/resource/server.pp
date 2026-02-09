@@ -93,6 +93,8 @@
 # @param proxy_busy_buffers_size
 #   Sets the total size of buffers that can be busy sending a response to the
 #   client while the response is not yet fully read.
+# @param grpc
+#   Sets the gRPC server address (`grpc_pass`)
 # @param resolver
 #   Configures name servers used to resolve names of upstream servers into addresses.
 # @param fastcgi
@@ -386,6 +388,7 @@ define nginx::resource::server (
   Optional[String] $proxy_request_buffering                                      = undef,
   Optional[Nginx::Size] $proxy_max_temp_file_size                                = undef,
   Optional[Nginx::Size] $proxy_busy_buffers_size                                 = undef,
+  Optional[String] $grpc                                                         = undef,
   Array $resolver                                                                = [],
   Optional[String] $fastcgi                                                      = undef,
   Optional[String] $fastcgi_index                                                = undef,
@@ -592,6 +595,7 @@ define nginx::resource::server (
       proxy_request_buffering       => $proxy_request_buffering,
       proxy_busy_buffers_size       => $proxy_busy_buffers_size,
       proxy_max_temp_file_size      => $proxy_max_temp_file_size,
+      grpc                          => $grpc,
       fastcgi                       => $fastcgi,
       fastcgi_index                 => $fastcgi_index,
       fastcgi_param                 => $fastcgi_param,

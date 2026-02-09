@@ -1472,6 +1472,14 @@ describe 'nginx::resource::server' do
             it { is_expected.to contain_nginx__resource__location("#{title}-default").with_location_cfg_append('key' => 'value') }
           end
 
+          context 'when grpc => "127.0.0.1:9000"' do
+            let :params do
+              default_params.merge(grpc: '127.0.0.1:9000')
+            end
+
+            it { is_expected.to contain_nginx__resource__location("#{title}-default").with_grpc('127.0.0.1:9000') }
+          end
+
           context 'when fastcgi => "localhost:9000"' do
             let :params do
               default_params.merge(fastcgi: 'localhost:9000')
