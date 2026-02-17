@@ -114,7 +114,7 @@ describe 'nginx' do
                 'baseurl'       => "https://oss-binaries.phusionpassenger.com/yum/passenger/el/#{facts[:os]['release']['major']}/$basearch",
                 'gpgcheck'      => '0',
                 'repo_gpgcheck' => '1',
-                'gpgkey'        => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key.txt'
+                'gpgkey'        => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key-2025.txt'
               )
             end
 
@@ -200,7 +200,7 @@ describe 'nginx' do
                 'location' => 'https://oss-binaries.phusionpassenger.com/apt/passenger',
                 'repos'    => 'main',
                 'key'      => {
-                  'source' => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key.txt',
+                  'source' => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key-2025.txt',
                   'name' => 'phusionpassenger.asc'
                 }
               )

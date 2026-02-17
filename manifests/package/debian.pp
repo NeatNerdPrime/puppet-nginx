@@ -65,7 +65,7 @@ class nginx::package::debian {
           repos        => 'main',
           key          => {
             'name'   => 'phusionpassenger.asc',
-            'source' => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key.txt',
+            'source' => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key-2025.txt',
           },
           architecture => $facts['os']['architecture'],
         }
