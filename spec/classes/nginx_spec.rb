@@ -114,7 +114,7 @@ describe 'nginx' do
                 'baseurl'       => "https://oss-binaries.phusionpassenger.com/yum/passenger/el/#{facts[:os]['release']['major']}/$basearch",
                 'gpgcheck'      => '0',
                 'repo_gpgcheck' => '1',
-                'gpgkey'        => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key.txt'
+                'gpgkey'        => 'https://oss-binaries.phusionpassenger.com/auto-software-signing-gpg-key-2025.txt'
               )
             end
 
