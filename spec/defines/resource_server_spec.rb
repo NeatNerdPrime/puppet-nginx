@@ -546,6 +546,57 @@ describe 'nginx::resource::server' do
             end
           end
 
+          context 'with a www domain title over http' do
+            let(:title) { 'www.rspec.example.com' }
+
+            [
+              {
+                title: 'should contain access and error logs directives inside the non-www rewrite',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{\s+return\s+301\s+http://www.rspec\.example\.com\$request_uri;\n
+                \s+access_log\s+/var/log/nginx/www.rspec.example.com.access.log;\n
+                \s+error_log\s+/var/log/nginx/www.rspec.example.com.error.log;\n}x
+              },
+              {
+                title: 'should contain non-www to www rewrite',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{
+                ^
+                \s+server_name\s+www\.rspec\.example\.com;\n
+                \s+return\s+301\s+http://www\.rspec\.example\.com\$request_uri;
+                }x
+              },
+              {
+                title: 'should rewrite non-www servername to www',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{\s+server_name\s+www.rspec.example.com;}
+              }
+            ].each do |param|
+              context "when #{param[:attr]} is #{param[:value]}" do
+                let(:params) { default_params.merge(param[:attr].to_sym => param[:value]) }
+
+                it { is_expected.to contain_concat__fragment("#{title}-header") }
+
+                it param[:title] do
+                  matches = Array(param[:match])
+
+                  if matches.all? { |m| m.is_a? Regexp }
+                    matches.each { |item| is_expected.to contain_concat__fragment("#{title}-header").with_content(item) }
+                  else
+                    lines = catalogue.resource('concat::fragment', "#{title}-header").send(:parameters)[:content].split("\n")
+                    expect(lines & Array(param[:match])).to eq(Array(param[:match]))
+                  end
+                  Array(param[:notmatch]).each do |item|
+                    is_expected.to contain_concat__fragment("#{title}-header").without_content(item)
+                  end
+                end
+              end
+            end
+          end
+
           describe 'ipv6_listen_options inheritance from listen_options' do
             context 'when listen_options is set but ipv6_listen_options is not' do
               let(:params) { default_params.merge(listen_options: 'reuseport') }
@@ -1214,6 +1265,103 @@ describe 'nginx::resource::server' do
                 end
                 Array(param[:notmatch]).each do |item|
                   is_expected.to contain_concat__fragment("#{title}-ssl-header").without_content(item)
+                end
+              end
+            end
+          end
+
+          context 'with a www domain title over https' do
+            let(:title) { 'www.rspec.example.com' }
+
+            [
+              {
+                title: 'should contain non-www to https www rewrite',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{
+                ^
+                \s+server_name\s+www\.rspec\.example\.com;\n
+                \s+return\s+301\s+https://www\.rspec\.example\.com\$request_uri;
+                }x
+              },
+              {
+                title: 'should rewrite non-www servername to www',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{\s+server_name\s+www.rspec.example.com;}
+              }
+            ].each do |param|
+              context "when #{param[:attr]} is #{param[:value]}" do
+                let :params do
+                  default_params.merge(
+                    param[:attr].to_sym => param[:value],
+                    :ssl                => true,
+                    :ssl_key            => 'dummy.key',
+                    :ssl_cert           => 'dummy.crt',
+                    :ssl_redirect       => true
+                  )
+                end
+
+                it { is_expected.to contain_concat__fragment("#{title}-header") }
+
+                it param[:title] do
+                  matches = Array(param[:match])
+
+                  if matches.all? { |m| m.is_a? Regexp }
+                    matches.each { |item| is_expected.to contain_concat__fragment("#{title}-header").with_content(item) }
+                  else
+                    lines = catalogue.resource('concat::fragment', "#{title}-header").send(:parameters)[:content].split("\n")
+                    expect(lines & Array(param[:match])).to eq(Array(param[:match]))
+                  end
+                  Array(param[:notmatch]).each do |item|
+                    is_expected.to contain_concat__fragment("#{title}-header").without_content(item)
+                  end
+                end
+              end
+            end
+
+            [
+              {
+                title: 'should contain non-www to http www rewrite',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{
+                ^
+                \s+server_name\s+www\.rspec\.example\.com;\n
+                \s+return\s+301\s+http://www\.rspec\.example\.com\$request_uri;
+                }x
+              },
+              {
+                title: 'should rewrite non-www servername to www',
+                attr: 'rewrite_non_www_to_www',
+                value: true,
+                match: %r{\s+server_name\s+www.rspec.example.com;}
+              }
+            ].each do |param|
+              context "when #{param[:attr]} is #{param[:value]}" do
+                let :params do
+                  default_params.merge(
+                    param[:attr].to_sym => param[:value],
+                    :ssl                => true,
+                    :ssl_key            => 'dummy.key',
+                    :ssl_cert           => 'dummy.crt'
+                  )
+                end
+
+                it { is_expected.to contain_concat__fragment("#{title}-header") }
+
+                it param[:title] do
+                  matches = Array(param[:match])
+
+                  if matches.all? { |m| m.is_a? Regexp }
+                    matches.each { |item| is_expected.to contain_concat__fragment("#{title}-header").with_content(item) }
+                  else
+                    lines = catalogue.resource('concat::fragment', "#{title}-header").send(:parameters)[:content].split("\n")
+                    expect(lines & Array(param[:match])).to eq(Array(param[:match]))
+                  end
+                  Array(param[:notmatch]).each do |item|
+                    is_expected.to contain_concat__fragment("#{title}-header").without_content(item)
+                  end
                 end
               end
             end

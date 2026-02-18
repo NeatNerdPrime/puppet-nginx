@@ -29,9 +29,9 @@ server {
 <%- elsif @rewrite_non_www_to_www -%>
   server_name  <%= s %>;
   <%- if @ssl_redirect or @ssl_only -%>
-  return       301 https://www.<%= s %><% if @_ssl_redirect_port.to_i != 443 %>:<%= @_ssl_redirect_port %><% end %>$request_uri;
+  return       301 https://www.<%= s.gsub(/^www\./, '') %><% if @_ssl_redirect_port.to_i != 443 %>:<%= @_ssl_redirect_port %><% end %>$request_uri;
   <%- else -%>
-  return       301 http://www.<%= s %>$request_uri;
+  return       301 http://www.<%= s.gsub(/^www\./, '') %>$request_uri;
   <%- end -%>
 <%- end -%>
 <% if @access_log.is_a?(Array) -%>
