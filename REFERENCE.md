@@ -192,6 +192,7 @@ The following parameters are available in the `nginx` class:
 * [`proxy_ignore_header`](#-nginx--proxy_ignore_header)
 * [`proxy_max_temp_file_size`](#-nginx--proxy_max_temp_file_size)
 * [`proxy_busy_buffers_size`](#-nginx--proxy_busy_buffers_size)
+* [`grpc`](#-nginx--grpc)
 * [`real_ip_header`](#-nginx--real_ip_header)
 * [`real_ip_recursive`](#-nginx--real_ip_recursive)
 * [`set_real_ip_from`](#-nginx--set_real_ip_from)
@@ -1217,6 +1218,14 @@ Data type: `Optional[Nginx::Size]`
 
 Default value: `undef`
 
+##### <a name="-nginx--grpc"></a>`grpc`
+
+Data type: `Optional[String]`
+
+Sets the gRPC server address (`grpc_pass`)
+
+Default value: `undef`
+
 ##### <a name="-nginx--real_ip_header"></a>`real_ip_header`
 
 Data type: `Optional[String[1]]`
@@ -1971,6 +1980,7 @@ The following parameters are available in the `nginx::resource::location` define
 * [`proxy_pass_header`](#-nginx--resource--location--proxy_pass_header)
 * [`proxy_ignore_header`](#-nginx--resource--location--proxy_ignore_header)
 * [`proxy_next_upstream`](#-nginx--resource--location--proxy_next_upstream)
+* [`grpc`](#-nginx--resource--location--grpc)
 * [`fastcgi`](#-nginx--resource--location--fastcgi)
 * [`fastcgi_param`](#-nginx--resource--location--fastcgi_param)
 * [`fastcgi_params`](#-nginx--resource--location--fastcgi_params)
@@ -2236,6 +2246,14 @@ Default value: `$nginx::proxy_ignore_header`
 Data type: `Optional[String]`
 
 Specify cases a request should be passed to the next server in the upstream.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--grpc"></a>`grpc`
+
+Data type: `Optional[String]`
+
+Sets the gRPC server address (`grpc_pass`)
 
 Default value: `undef`
 
@@ -3490,6 +3508,7 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`proxy_request_buffering`](#-nginx--resource--server--proxy_request_buffering)
 * [`proxy_max_temp_file_size`](#-nginx--resource--server--proxy_max_temp_file_size)
 * [`proxy_busy_buffers_size`](#-nginx--resource--server--proxy_busy_buffers_size)
+* [`grpc`](#-nginx--resource--server--grpc)
 * [`resolver`](#-nginx--resource--server--resolver)
 * [`fastcgi`](#-nginx--resource--server--fastcgi)
 * [`fastcgi_param`](#-nginx--resource--server--fastcgi_param)
@@ -3909,6 +3928,14 @@ Data type: `Optional[Nginx::Size]`
 
 Sets the total size of buffers that can be busy sending a response to the
 client while the response is not yet fully read.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--grpc"></a>`grpc`
+
+Data type: `Optional[String]`
+
+Sets the gRPC server address (`grpc_pass`)
 
 Default value: `undef`
 

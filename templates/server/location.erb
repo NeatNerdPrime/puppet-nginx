@@ -4,10 +4,11 @@
 <%= scope.function_template(['nginx/server/locations/headers.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/stub_status.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/dav.erb']) -%>
-<% if @fastcgi or @uwsgi or @proxy -%>
+<% if @grpc or @fastcgi or @uwsgi or @proxy -%>
 <%= scope.function_template(['nginx/server/locations/proxy.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/uwsgi.erb']) -%>
 <%= scope.function_template(['nginx/server/locations/fastcgi.erb']) -%>
+<%= scope.function_template(['nginx/server/locations/grpc.erb']) -%>
 <% else -%>
 <%= scope.function_template(['nginx/server/locations/directory.erb']) -%>
 <% end -%>

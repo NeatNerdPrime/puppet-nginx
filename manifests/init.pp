@@ -156,6 +156,8 @@
 # @param proxy_ignore_header
 # @param proxy_max_temp_file_size
 # @param proxy_busy_buffers_size
+# @param grpc
+#   Sets the gRPC server address (`grpc_pass`)
 # @param real_ip_header
 #   Defines the request header field whose value will be used to replace the
 #   client address. See http://nginx.org/en/docs/http/ngx_http_realip_module.html
@@ -353,6 +355,7 @@ class nginx (
   Array $proxy_ignore_header                                 = [],
   Optional[Nginx::Size] $proxy_max_temp_file_size            = undef,
   Optional[Nginx::Size] $proxy_busy_buffers_size             = undef,
+  Optional[String] $grpc                                     = undef,
   Optional[String[1]] $real_ip_header                        = undef,
   Optional[Enum['on', 'off']] $real_ip_recursive             = undef,
   Optional[Variant[String[1], Array[String[1]]]] $set_real_ip_from = undef,
