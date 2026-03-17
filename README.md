@@ -42,15 +42,15 @@ nginx::resource::server { 'kibana.myhost.com':
 ### A virtual host with static content
 
 ```puppet
-nginx::resource::server { 'www.puppetlabs.com':
-  www_root => '/var/www/www.puppetlabs.com',
+nginx::resource::server { 'voxpupuli.org':
+  www_root => '/var/www/voxpupuli.org',
 }
 ```
 
 ### A more complex proxy example
 
 ```puppet
-nginx::resource::upstream { 'puppet_rack_app':
+nginx::resource::upstream { 'openvox_rack_app':
   members => {
     'localhost:3000' => {
       server => 'localhost',
@@ -70,8 +70,8 @@ nginx::resource::upstream { 'puppet_rack_app':
   },
 }
 
-nginx::resource::server { 'rack.puppetlabs.com':
-  proxy => 'http://puppet_rack_app',
+nginx::resource::server { 'rack.voxpupuli.org':
+  proxy => 'http://openvox_rack_app',
 }
 ```
 
@@ -202,18 +202,18 @@ nginx::nginx_upstreams:
         server: 'localhost'
         port: 3002
 nginx::nginx_servers:
-  'www.puppetlabs.com':
-    www_root: '/var/www/www.puppetlabs.com'
-  'rack.puppetlabs.com':
+  'voxpupuli.org':
+    www_root: '/var/www/voxpupuli.org'
+  'rack.voxpupuli.org':
     proxy: 'http://puppet_rack_app'
 nginx::nginx_locations:
   'static':
     location: '~ "^/static/[0-9a-fA-F]{8}\/(.*)$"'
-    server: www.puppetlabs.com
+    server: voxpupuli.org
     www_root: /var/www/html
   'userContent':
     location: /userContent
-    server: www.puppetlabs.com
+    server: voxpupuli.org
     www_root: /var/www/html
 nginx::nginx_mailhosts:
   'smtp':
@@ -293,8 +293,8 @@ Package source `passenger` will add [Phusion Passenger repository](https://oss-b
 to APT sources. For each virtual host you should specify which ruby should be used.
 
 ```puppet
-nginx::resource::server { 'www.puppetlabs.com':
-  www_root          => '/var/www/www.puppetlabs.com',
+nginx::resource::server { 'voxpupuli.org':
+  www_root          => '/var/www/voxpupuli.org',
   server_cfg_append => {
     'passenger_enabled' => 'on',
     'passenger_ruby'    => '/usr/bin/ruby',
