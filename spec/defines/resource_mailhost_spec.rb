@@ -13,7 +13,7 @@ describe 'nginx::resource::mailhost' do
       let :default_params do
         {
           listen_port: 25,
-          ipv6_enable: true
+          ipv6_enable: true,
         }
       end
       let(:pre_condition) { ['class { "nginx": mail => true }'] }
@@ -48,109 +48,109 @@ describe 'nginx::resource::mailhost' do
               title: 'should set the IPv4 listen IP',
               attr: 'listen_ip',
               value: '127.0.0.1',
-              match: '  listen                127.0.0.1:25;'
+              match: '  listen                127.0.0.1:25;',
             },
             {
               title: 'should set the IPv4 listen port',
               attr: 'listen_port',
               value: 45,
-              match: '  listen                *:45;'
+              match: '  listen                *:45;',
             },
             {
               title: 'should set the IPv4 listen options',
               attr: 'listen_options',
               value: 'spdy default',
-              match: '  listen                *:25 spdy default;'
+              match: '  listen                *:25 spdy default;',
             },
             {
               title: 'should enable IPv6',
               attr: 'ipv6_enable',
               value: true,
-              match: '  listen                [::]:25 ipv6only=on;'
+              match: '  listen                [::]:25 ipv6only=on;',
             },
             {
               title: 'should not enable IPv6',
               attr: 'ipv6_enable',
               value: false,
-              notmatch: %r{  listen                \[::\]:25 ipv6only=on;}
+              notmatch: %r{  listen                \[::\]:25 ipv6only=on;},
             },
             {
               title: 'should set the IPv6 listen IP',
               attr: 'ipv6_listen_ip',
               value: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
-              match: '  listen                [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:25 ipv6only=on;'
+              match: '  listen                [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:25 ipv6only=on;',
             },
             {
               title: 'should set the IPv6 listen port',
               attr: 'ipv6_listen_port',
               value: 45,
-              match: '  listen                [::]:45 ipv6only=on;'
+              match: '  listen                [::]:45 ipv6only=on;',
             },
             {
               title: 'should set the IPv6 listen options',
               attr: 'ipv6_listen_options',
               value: 'spdy',
-              match: '  listen                [::]:25 spdy;'
+              match: '  listen                [::]:25 spdy;',
             },
             {
               title: 'should set servername(s)',
               attr: 'server_name',
               value: %w[name1 name2],
-              match: '  server_name           name1 name2;'
+              match: '  server_name           name1 name2;',
             },
             {
               title: 'should set protocol',
               attr: 'protocol',
               value: 'imap',
-              match: '  protocol              imap;'
+              match: '  protocol              imap;',
             },
             {
               title: 'should set xclient',
               attr: 'xclient',
               value: 'off',
-              match: '  xclient               off;'
+              match: '  xclient               off;',
             },
             {
               title: 'should set auth_http',
               attr: 'auth_http',
               value: 'test-auth_http',
-              match: '  auth_http             test-auth_http;'
+              match: '  auth_http             test-auth_http;',
             },
             {
               title: 'should set auth_http_header',
               attr: 'auth_http_header',
               value: 'X-Auth-Key "secret_string"',
-              match: '  auth_http_header      X-Auth-Key "secret_string";'
+              match: '  auth_http_header      X-Auth-Key "secret_string";',
             },
             {
               title: 'should set starttls',
               attr: 'starttls',
               value: 'on',
-              match: '  starttls              on;'
+              match: '  starttls              on;',
             },
             {
               title: 'should set starttls',
               attr: 'starttls',
               value: 'only',
-              match: '  starttls              only;'
+              match: '  starttls              only;',
             },
             {
               title: 'should not enable SSL',
               attr: 'starttls',
               value: 'off',
-              notmatch: %r{  ssl_session_timeout  5m;}
+              notmatch: %r{  ssl_session_timeout  5m;},
             },
             {
               title: 'should contain raw_prepend directives (String)',
               attr: 'raw_prepend',
               value: 'test value;',
-              match: ['  test value;']
+              match: ['  test value;'],
             },
             {
               title: 'should contain raw_append directives (String)',
               attr: 'raw_append',
               value: 'test value;',
-              match: ['  test value;']
+              match: ['  test value;'],
             },
             {
               title: 'should contain raw_prepend directives (Array)',
@@ -158,9 +158,9 @@ describe 'nginx::resource::mailhost' do
               value: [
                 'if (a) {',
                 '  b;',
-                '}'
+                '}',
               ],
-              match: %r{^\s+if \(a\) \{\n\s++b;\n\s+\}}
+              match: %r{^\s+if \(a\) \{\n\s++b;\n\s+\}},
             },
             {
               title: 'should contain raw_append directives (Array)',
@@ -168,9 +168,9 @@ describe 'nginx::resource::mailhost' do
               value: [
                 'if (a) {',
                 '  b;',
-                '}'
+                '}',
               ],
-              match: %r{^\s+if \(a\) \{\n\s++b;\n\s+\}}
+              match: %r{^\s+if \(a\) \{\n\s++b;\n\s+\}},
             },
             {
               title: 'should contain ordered prepended directives',
@@ -192,7 +192,7 @@ describe 'nginx::resource::mailhost' do
                 '  test3 subkey 3b subvalue 3b1;',
                 '  test3 subkey 3b subvalue 3b2;',
                 '  test4 test value 4;',
-              ]
+              ],
             },
             {
               title: 'should contain ordered appended directives',
@@ -214,8 +214,8 @@ describe 'nginx::resource::mailhost' do
                 '  test3 subkey 3b subvalue 3b1;',
                 '  test3 subkey 3b subvalue 3b2;',
                 '  test4 test value 4;',
-              ]
-            }
+              ],
+            },
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
               let :default_params do
@@ -223,7 +223,7 @@ describe 'nginx::resource::mailhost' do
                   listen_port: 25,
                   ipv6_enable: true,
                   ssl_cert: 'dummy.crt',
-                  ssl_key: 'dummy.key'
+                  ssl_key: 'dummy.key',
                 }
               end
               let(:params) { default_params.merge(param[:attr].to_sym => param[:value]) }
@@ -247,7 +247,7 @@ describe 'nginx::resource::mailhost' do
             let :default_params do
               {
                 listen_port: 25,
-                ipv6_enable: true
+                ipv6_enable: true,
               }
             end
 
@@ -283,7 +283,7 @@ describe 'nginx::resource::mailhost' do
                 listen_port: 25,
                 ipv6_enable: true,
                 ssl_cert: 'dummy.crt',
-                ssl_key: 'dummy.key'
+                ssl_key: 'dummy.key',
               }
             end
 
@@ -301,27 +301,27 @@ describe 'nginx::resource::mailhost' do
               title: 'should set imap_auth',
               attr: 'imap_auth',
               value: 'login',
-              match: '  imap_auth           login;'
+              match: '  imap_auth           login;',
             },
             {
               title: 'should set imap_capabilities',
               attr: 'imap_capabilities',
               value: ['"SIZE 52428800"', 'IMAP4rev1', 'UIDPLUS'],
-              match: '  imap_capabilities   "SIZE 52428800" IMAP4rev1 UIDPLUS;'
+              match: '  imap_capabilities   "SIZE 52428800" IMAP4rev1 UIDPLUS;',
             },
             {
               title: 'should set imap_client_buffer',
               attr: 'imap_client_buffer',
               value: '8k',
-              match: '  imap_client_buffer  8k;'
-            }
+              match: '  imap_client_buffer  8k;',
+            },
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
               let :default_params do
                 {
                   listen_port: 25,
                   ipv6_enable: true,
-                  protocol: 'imap'
+                  protocol: 'imap',
                 }
               end
 
@@ -349,21 +349,21 @@ describe 'nginx::resource::mailhost' do
               title: 'should set pop3_auth',
               attr: 'pop3_auth',
               value: 'login',
-              match: '  pop3_auth          login;'
+              match: '  pop3_auth          login;',
             },
             {
               title: 'should set pop3_capabilities',
               attr: 'pop3_capabilities',
               value: %w[TOP USER UIDL],
-              match: '  pop3_capabilities  TOP USER UIDL;'
-            }
+              match: '  pop3_capabilities  TOP USER UIDL;',
+            },
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
               let :default_params do
                 {
                   listen_port: 25,
                   ipv6_enable: true,
-                  protocol: 'pop3'
+                  protocol: 'pop3',
                 }
               end
               let(:params) { default_params.merge(param[:attr].to_sym => param[:value]) }
@@ -390,21 +390,21 @@ describe 'nginx::resource::mailhost' do
               title: 'should set smtp_auth',
               attr: 'smtp_auth',
               value: 'login',
-              match: '  smtp_auth          login;'
+              match: '  smtp_auth          login;',
             },
             {
               title: 'should set smtp_capabilities',
               attr: 'smtp_capabilities',
               value: %w[8BITMIME PIPELINING HELP],
-              match: '  smtp_capabilities  8BITMIME PIPELINING HELP;'
-            }
+              match: '  smtp_capabilities  8BITMIME PIPELINING HELP;',
+            },
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
               let :default_params do
                 {
                   listen_port: 25,
                   ipv6_enable: true,
-                  protocol: 'smtp'
+                  protocol: 'smtp',
                 }
               end
               let(:params) { default_params.merge(param[:attr].to_sym => param[:value]) }
@@ -431,128 +431,128 @@ describe 'nginx::resource::mailhost' do
               title: 'should set starttls',
               attr: 'starttls',
               value: 'on',
-              match: '  starttls              on;'
+              match: '  starttls              on;',
             },
             {
               title: 'should set starttls',
               attr: 'starttls',
               value: 'only',
-              match: '  starttls              only;'
+              match: '  starttls              only;',
             },
             {
               title: 'should not enable SSL',
               attr: 'starttls',
               value: 'off',
-              notmatch: %r{  ssl_session_timeout  5m;}
+              notmatch: %r{  ssl_session_timeout  5m;},
             },
             {
               title: 'should set ssl_certificate',
               attr: 'ssl_cert',
               value: 'test-ssl-cert',
-              match: '  ssl_certificate            test-ssl-cert;'
+              match: '  ssl_certificate            test-ssl-cert;',
             },
             {
               title: 'should set ssl_certificate_key',
               attr: 'ssl_key',
               value: 'test-ssl-cert-key',
-              match: '  ssl_certificate_key        test-ssl-cert-key;'
+              match: '  ssl_certificate_key        test-ssl-cert-key;',
             },
             {
               title: 'should set ssl_ciphers',
               attr: 'ssl_ciphers',
               value: 'ECDHE-ECDSA-CHACHA20-POLY1305',
-              match: '  ssl_ciphers                ECDHE-ECDSA-CHACHA20-POLY1305;'
+              match: '  ssl_ciphers                ECDHE-ECDSA-CHACHA20-POLY1305;',
             },
             {
               title: 'should set ssl_prefer_server_ciphers to on',
               attr: 'ssl_prefer_server_ciphers',
               value: 'on',
-              match: '  ssl_prefer_server_ciphers  on;'
+              match: '  ssl_prefer_server_ciphers  on;',
             },
             {
               title: 'should set ssl_prefer_server_ciphers to off',
               attr: 'ssl_prefer_server_ciphers',
               value: 'off',
-              match: '  ssl_prefer_server_ciphers  off;'
+              match: '  ssl_prefer_server_ciphers  off;',
             },
             {
               title: 'should set ssl_client_certificate',
               attr: 'ssl_client_cert',
               value: 'client-cert',
-              match: '  ssl_client_certificate     client-cert;'
+              match: '  ssl_client_certificate     client-cert;',
             },
             {
               title: 'should set ssl_crl',
               attr: 'ssl_crl',
               value: 'crl-file',
-              match: '  ssl_crl                    crl-file;'
+              match: '  ssl_crl                    crl-file;',
             },
             {
               title: 'should set ssl_dhparam',
               attr: 'ssl_dhparam',
               value: 'dhparam-file',
-              match: '  ssl_dhparam                dhparam-file;'
+              match: '  ssl_dhparam                dhparam-file;',
             },
             {
               title: 'should set ssl_ecdh_curve',
               attr: 'ssl_ecdh_curve',
               value: 'secp521r1',
-              match: '  ssl_ecdh_curve             secp521r1;'
+              match: '  ssl_ecdh_curve             secp521r1;',
             },
             {
               title: 'should set ssl_client_certificate',
               attr: 'ssl_client_cert',
               value: 'client-cert',
-              match: '  ssl_client_certificate     client-cert;'
+              match: '  ssl_client_certificate     client-cert;',
             },
             {
               title: 'should set ssl_password_file',
               attr: 'ssl_password_file',
               value: 'password-file',
-              match: '  ssl_password_file          password-file;'
+              match: '  ssl_password_file          password-file;',
             },
             {
               title: 'should set ssl_protocols',
               attr: 'ssl_protocols',
               value: 'TLSv1.2',
-              match: '  ssl_protocols              TLSv1.2;'
+              match: '  ssl_protocols              TLSv1.2;',
             },
             {
               title: 'should set ssl_session_cache',
               attr: 'ssl_session_cache',
               value: 'none',
-              match: '  ssl_session_cache          none;'
+              match: '  ssl_session_cache          none;',
             },
             {
               title: 'should set ssl_session_ticket_key',
               attr: 'ssl_session_ticket_key',
               value: 'key-file',
-              match: '  ssl_session_ticket_key     key-file;'
+              match: '  ssl_session_ticket_key     key-file;',
             },
             {
               title: 'should set ssl_session_tickets',
               attr: 'ssl_session_tickets',
               value: 'on',
-              match: '  ssl_session_tickets        on;'
+              match: '  ssl_session_tickets        on;',
             },
             {
               title: 'should set ssl_session_timeout',
               attr: 'ssl_session_timeout',
               value: '20m',
-              match: '  ssl_session_timeout        20m;'
+              match: '  ssl_session_timeout        20m;',
             },
             {
               title: 'should set ssl_trusted_certificate',
               attr: 'ssl_trusted_cert',
               value: 'trust-cert',
-              match: '  ssl_trusted_certificate    trust-cert;'
+              match: '  ssl_trusted_certificate    trust-cert;',
             },
             {
               title: 'should set ssl_verify_depth',
               attr: 'ssl_verify_depth',
               value: 2,
-              match: '  ssl_verify_depth           2;'
-            }
+              match: '  ssl_verify_depth           2;',
+            },
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
               let :default_params do
@@ -560,7 +560,7 @@ describe 'nginx::resource::mailhost' do
                   listen_port: 25,
                   starttls: 'on',
                   ssl_cert: 'dummy.crt',
-                  ssl_key: 'dummy.key'
+                  ssl_key: 'dummy.key',
                 }
               end
               let(:params) { default_params.merge(param[:attr].to_sym => param[:value]) }
@@ -587,92 +587,92 @@ describe 'nginx::resource::mailhost' do
               title: 'should set the IPv4 SSL listen port',
               attr: 'ssl_port',
               value: 45,
-              match: '  listen                *:45 ssl;'
+              match: '  listen                *:45 ssl;',
             },
             {
               title: 'should enable IPv6',
               attr: 'ipv6_enable',
               value: true,
-              match: '  listen                [::]:587 ssl ipv6only=on;'
+              match: '  listen                [::]:587 ssl ipv6only=on;',
             },
             {
               title: 'should not enable IPv6',
               attr: 'ipv6_enable',
               value: false,
-              notmatch: %r{  listen\s+\[::\]:587 ;}
+              notmatch: %r{  listen\s+\[::\]:587 ;},
             },
             {
               title: 'should set the IPv6 listen IP',
               attr: 'ipv6_listen_ip',
               value: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
-              match: '  listen                [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:587 ssl ipv6only=on;'
+              match: '  listen                [2001:0db8:85a3:0000:0000:8a2e:0370:7334]:587 ssl ipv6only=on;',
             },
             {
               title: 'should set the IPv6 ssl port',
               attr: 'ssl_port',
               value: 45,
-              match: '  listen                [::]:45 ssl ipv6only=on;'
+              match: '  listen                [::]:45 ssl ipv6only=on;',
             },
             {
               title: 'should set the IPv6 listen options',
               attr: 'ipv6_listen_options',
               value: 'spdy',
-              match: '  listen                [::]:587 ssl spdy;'
+              match: '  listen                [::]:587 ssl spdy;',
             },
             {
               title: 'should set servername(s)',
               attr: 'server_name',
               value: %w[name1 name2],
-              match: '  server_name           name1 name2;'
+              match: '  server_name           name1 name2;',
             },
             {
               title: 'should set protocol',
               attr: 'protocol',
               value: 'imap',
-              match: '  protocol              imap;'
+              match: '  protocol              imap;',
             },
             {
               title: 'should set xclient',
               attr: 'xclient',
               value: 'off',
-              match: '  xclient               off;'
+              match: '  xclient               off;',
             },
             {
               title: 'should set auth_http',
               attr: 'auth_http',
               value: 'test-auth_http',
-              match: '  auth_http             test-auth_http;'
+              match: '  auth_http             test-auth_http;',
             },
             {
               title: 'should set auth_http_header',
               attr: 'auth_http_header',
               value: 'X-Auth-Key "secret_string"',
-              match: '  auth_http_header      X-Auth-Key "secret_string";'
+              match: '  auth_http_header      X-Auth-Key "secret_string";',
             },
             {
               title: 'should set ssl_protocols',
               attr: 'ssl_protocols',
               value: 'test-ssl-protocol',
-              match: '  ssl_protocols              test-ssl-protocol;'
+              match: '  ssl_protocols              test-ssl-protocol;',
             },
             {
               title: 'should set ssl_ciphers',
               attr: 'ssl_ciphers',
               value: 'test-ssl-ciphers',
-              match: '  ssl_ciphers                test-ssl-ciphers;'
+              match: '  ssl_ciphers                test-ssl-ciphers;',
             },
             {
               title: 'should set ssl_certificate',
               attr: 'ssl_cert',
               value: 'test-ssl-cert',
-              match: '  ssl_certificate            test-ssl-cert;'
+              match: '  ssl_certificate            test-ssl-cert;',
             },
             {
               title: 'should set ssl_certificate_key',
               attr: 'ssl_key',
               value: 'test-ssl-cert-key',
-              match: '  ssl_certificate_key        test-ssl-cert-key;'
-            }
+              match: '  ssl_certificate_key        test-ssl-cert-key;',
+            },
           ].each do |param|
             context "when #{param[:attr]} is #{param[:value]}" do
               let :default_params do
@@ -684,7 +684,7 @@ describe 'nginx::resource::mailhost' do
                   ssl_protocols: 'default-protocols',
                   ssl_ciphers: 'default-ciphers',
                   ssl_cert: 'dummy.crt',
-                  ssl_key: 'dummy.key'
+                  ssl_key: 'dummy.key',
                 }
               end
               let(:params) { default_params.merge(param[:attr].to_sym => param[:value]) }
@@ -714,7 +714,7 @@ describe 'nginx::resource::mailhost' do
                 ssl_protocols: 'default-protocols',
                 ssl_ciphers: 'default-ciphers',
                 ssl_cert: 'dummy.crt',
-                ssl_key: 'dummy.key'
+                ssl_key: 'dummy.key',
               }
             end
 
@@ -766,7 +766,7 @@ describe 'nginx::resource::mailhost' do
           context 'SSL cert missing and ssl => true' do
             let(:params) do
               default_params.merge(
-                ssl: true, ssl_key: 'key'
+                ssl: true, ssl_key: 'key',
               )
             end
 
@@ -867,7 +867,7 @@ describe 'nginx::resource::mailhost' do
               ipv6_enable: true,
               ssl: true,
               ssl_cert: 'dummy.crt',
-              ssl_key: 'dummy.key'
+              ssl_key: 'dummy.key',
             }
           end
           let(:facts) do
@@ -878,13 +878,13 @@ describe 'nginx::resource::mailhost' do
           end
 
           it do
-            is_expected.to contain_concat__fragment("#{title}-header").
-              without_content(%r{^  listen                \[::\]:25 ipv6only=on;})
+            is_expected.to contain_concat__fragment("#{title}-header")
+              .without_content(%r{^  listen                \[::\]:25 ipv6only=on;})
           end
 
           it do
-            is_expected.to contain_concat__fragment("#{title}-ssl").
-              without_content(%r{^  listen                \[::\]:587 ipv6only=on;})
+            is_expected.to contain_concat__fragment("#{title}-ssl")
+              .without_content(%r{^  listen                \[::\]:587 ipv6only=on;})
           end
         end
       end

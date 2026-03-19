@@ -19,7 +19,7 @@ describe 'nginx::resource::snippet' do
       describe 'basic snippet' do
         let :params do
           {
-            raw_content: 'this is a test'
+            raw_content: 'this is a test',
           }
         end
 
