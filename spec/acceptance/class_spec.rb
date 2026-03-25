@@ -14,7 +14,7 @@ describe 'nginx class:' do
     pkg_cmd = 'dpkg -s nginx | grep ^Maintainer'
     pkg_remove_cmd = 'apt-get -y purge nginx nginx-common'
     pkg_match = case fact('os.release.major')
-                when '11', '12'
+                when '11', '12', '13'
                   %r{Debian Nginx Maintainers}
                 when '20.04', '22.04', '24.04'
                   %r{Ubuntu Developers}
