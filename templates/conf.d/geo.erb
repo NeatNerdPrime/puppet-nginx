@@ -25,8 +25,13 @@ geo <%= @address ? "#{@address} " : '' %>$<%= @name %> {
 <% end -%>
 <% if @networks -%>
 
-  <%- field_width = @networks.inject(0) { |l,(k,v)| k.size > l ? k.size : l } -%>
-  <%- @networks.sort_by{|k,v| IPAddr.new(k.split('-').first).to_i }.each do |key,value| -%>
+  <%-
+    # Expand { 'value' => ['net1', 'net2'] } to { 'net1' => 'value', 'net2' => 'value' }
+    expanded = {}
+    @networks.each { |value, nets| nets.each { |net| expanded[net] = value } }
+    field_width = expanded.inject(0) { |l,(k,v)| k.size > l ? k.size : l }
+  -%>
+  <%- expanded.sort_by{|k,v| IPAddr.new(k.split('-').first).to_i }.each do |key,value| -%>
   <%= sprintf("%-*s", field_width, key) %> <%= value %>;
   <%- end -%>
 <% end -%>

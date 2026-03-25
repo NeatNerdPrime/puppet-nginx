@@ -1778,9 +1778,7 @@ nginx::resource::geo { 'client_network':
   proxy_recursive => false,
   proxies         => [ '192.168.99.99' ],
   networks        => {
-    '10.0.0.0/8'     => 'intra',
-    '172.16.0.0/12'  => 'intra',
-    '192.168.0.0/16' => 'intra',
+    'intra' => ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'],
   }
 }
 ```
@@ -1788,6 +1786,12 @@ nginx::resource::geo { 'client_network':
 ##### Hiera usage
 
 ```puppet
+# Define network lists that can be reused
+my_internal_networks: &internal_nets
+  - '10.0.0.0/8'
+  - '172.16.0.0/12'
+  - '192.168.0.0/16'
+
 nginx::geo_mappings:
   client_network:
     ensure: present
@@ -1795,11 +1799,9 @@ nginx::geo_mappings:
     default: 'extra'
     proxy_recursive: false
     proxies:
-       - 192.168.99.99
+      - 192.168.99.99
     networks:
-      '10.0.0.0/8': 'intra'
-      '172.16.0.0/12': 'intra'
-      '192.168.0.0/16': 'intra'
+      intra: *internal_nets
 ```
 
 #### Parameters
@@ -1817,9 +1819,9 @@ The following parameters are available in the `nginx::resource::geo` defined typ
 
 ##### <a name="-nginx--resource--geo--networks"></a>`networks`
 
-Data type: `Hash`
+Data type: `Hash[String[1], Array[String[1]]]`
 
-Hash of geo lookup keys and resultant values
+Hash where keys are geo result values and values are network CIDR arrays.
 
 ##### <a name="-nginx--resource--geo--default"></a>`default`
 

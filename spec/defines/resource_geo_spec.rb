@@ -22,9 +22,7 @@ describe 'nginx::resource::geo' do
         {
           default: 'extra',
           networks: {
-            '172.16.0.0/12'  => 'intra',
-            '192.168.0.0/16' => 'intra',
-            '10.0.0.0/8'     => 'intra',
+            'intra' => ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'],
           },
           proxies: ['1.2.3.4', '4.3.2.1'],
         }
@@ -71,9 +69,7 @@ describe 'nginx::resource::geo' do
               title: 'should contain ordered network directives',
               attr: 'networks',
               value: {
-                '192.168.0.0/16' => 'intra',
-                '172.16.0.0/12'  => 'intra',
-                '10.0.0.0/8'     => 'intra',
+                'intra' => ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'],
               },
               match: [
                 '  10.0.0.0/8     intra;',
@@ -127,6 +123,59 @@ describe 'nginx::resource::geo' do
             end
 
             it { is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_ensure('absent') }
+          end
+        end
+
+        describe 'networks parameter with multiple values' do
+          context 'with multiple geo values' do
+            let :params do
+              {
+                default: 'extra',
+                networks: {
+                  'intra' => ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'],
+                  'external' => ['8.8.8.0/24'],
+                },
+                proxies: ['1.2.3.4'],
+              }
+            end
+
+            it { is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_mode('0644') }
+
+            it 'contains network directives for all values' do
+              is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_content(%r{10\.0\.0\.0/8\s+intra;})
+              is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_content(%r{172\.16\.0\.0/12\s+intra;})
+              is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_content(%r{192\.168\.0\.0/16\s+intra;})
+              is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_content(%r{8\.8\.8\.0/24\s+external;})
+            end
+          end
+
+          context 'with empty networks hash' do
+            let :params do
+              {
+                networks: {},
+              }
+            end
+
+            it { is_expected.to compile.with_all_deps }
+            it { is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf") }
+          end
+
+          context 'networks are sorted by IP address' do
+            let :params do
+              {
+                networks: {
+                  'external' => ['8.8.8.0/24'],
+                  'intra' => ['10.0.0.0/8', '192.168.0.0/16'],
+                },
+              }
+            end
+
+            it 'outputs networks in ascending IP order' do
+              # 8.8.8.0 < 10.0.0.0 < 192.168.0.0 numerically
+              is_expected.to contain_file("/etc/nginx/conf.d/#{title}-geo.conf").with_content(
+                %r{8\.8\.8\.0/24\s+external;.*10\.0\.0\.0/8\s+intra;.*192\.168\.0\.0/16\s+intra;}m,
+              )
+            end
           end
         end
       end

@@ -1,7 +1,7 @@
 # @summary Create a new geo mapping entry for NGINX
 #
 # @param networks
-#    Hash of geo lookup keys and resultant values
+#    Hash where keys are geo result values and values are network CIDR arrays.
 #
 # @param default
 #    Sets the resulting value if the source value fails to match any of the
@@ -35,13 +35,17 @@
 #     proxy_recursive => false,
 #     proxies         => [ '192.168.99.99' ],
 #     networks        => {
-#       '10.0.0.0/8'     => 'intra',
-#       '172.16.0.0/12'  => 'intra',
-#       '192.168.0.0/16' => 'intra',
+#       'intra' => ['10.0.0.0/8', '172.16.0.0/12', '192.168.0.0/16'],
 #     }
 #   }
 #
 # @example Hiera usage
+#   # Define network lists that can be reused
+#   my_internal_networks: &internal_nets
+#     - '10.0.0.0/8'
+#     - '172.16.0.0/12'
+#     - '192.168.0.0/16'
+#
 #   nginx::geo_mappings:
 #     client_network:
 #       ensure: present
@@ -49,13 +53,11 @@
 #       default: 'extra'
 #       proxy_recursive: false
 #       proxies:
-#          - 192.168.99.99
+#         - 192.168.99.99
 #       networks:
-#         '10.0.0.0/8': 'intra'
-#         '172.16.0.0/12': 'intra'
-#         '192.168.0.0/16': 'intra'
+#         intra: *internal_nets
 define nginx::resource::geo (
-  Hash $networks,
+  Hash[String[1], Array[String[1]]] $networks,
   Optional[String] $default           = undef,
   Enum['present', 'absent'] $ensure   = 'present',
   Boolean $ranges                     = false,
