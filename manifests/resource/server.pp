@@ -93,6 +93,8 @@
 # @param proxy_busy_buffers_size
 #   Sets the total size of buffers that can be busy sending a response to the
 #   client while the response is not yet fully read.
+# @param proxy_next_upstream 
+#   Specify cases a request should be passed to the next server in the upstream.
 # @param grpc
 #   Sets the gRPC server address (`grpc_pass`)
 # @param resolver
@@ -373,6 +375,7 @@ define nginx::resource::server (
   Array[String] $proxy_set_header                                                = $nginx::proxy_set_header,
   Array[String] $proxy_hide_header                                               = $nginx::proxy_hide_header,
   Array[String] $proxy_pass_header                                               = $nginx::proxy_pass_header,
+  Optional[String[1]] $proxy_next_upstream                                       = undef,
   Optional[String] $proxy_cache                                                  = undef,
   Optional[String] $proxy_cache_key                                              = undef,
   Optional[String] $proxy_cache_use_stale                                        = undef,
@@ -595,6 +598,7 @@ define nginx::resource::server (
       proxy_request_buffering       => $proxy_request_buffering,
       proxy_busy_buffers_size       => $proxy_busy_buffers_size,
       proxy_max_temp_file_size      => $proxy_max_temp_file_size,
+      proxy_next_upstream           => $proxy_next_upstream,
       grpc                          => $grpc,
       fastcgi                       => $fastcgi,
       fastcgi_index                 => $fastcgi_index,
