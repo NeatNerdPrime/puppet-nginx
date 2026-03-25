@@ -3508,6 +3508,7 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`proxy_request_buffering`](#-nginx--resource--server--proxy_request_buffering)
 * [`proxy_max_temp_file_size`](#-nginx--resource--server--proxy_max_temp_file_size)
 * [`proxy_busy_buffers_size`](#-nginx--resource--server--proxy_busy_buffers_size)
+* [`proxy_next_upstream`](#-nginx--resource--server--proxy_next_upstream)
 * [`grpc`](#-nginx--resource--server--grpc)
 * [`resolver`](#-nginx--resource--server--resolver)
 * [`fastcgi`](#-nginx--resource--server--fastcgi)
@@ -3928,6 +3929,14 @@ Data type: `Optional[Nginx::Size]`
 
 Sets the total size of buffers that can be busy sending a response to the
 client while the response is not yet fully read.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--proxy_next_upstream"></a>`proxy_next_upstream`
+
+Data type: `Optional[String[1]]`
+
+Specify cases a request should be passed to the next server in the upstream.
 
 Default value: `undef`
 
