@@ -3060,7 +3060,7 @@ Default value: `undef`
 
 ##### <a name="-nginx--resource--mailhost--ssl_prefer_server_ciphers"></a>`ssl_prefer_server_ciphers`
 
-Data type: `Optional[Enum['on', 'off']]`
+Data type: `Enum['on', 'off']`
 
 Specifies that server ciphers should be preferred over client ciphers when
 using the SSLv3 and TLS protocols.
