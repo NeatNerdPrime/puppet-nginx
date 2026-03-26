@@ -4,6 +4,65 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.0.0](https://github.com/voxpupuli/puppet-nginx/tree/v8.0.0) (2026-03-26)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v7.0.1...v8.0.0)
+
+**Breaking changes:**
+
+- streamline defaults with nginx [\#1690](https://github.com/voxpupuli/puppet-nginx/pull/1690) ([sebastianrakel](https://github.com/sebastianrakel))
+- Reverse geo `networks` param hash [\#1673](https://github.com/voxpupuli/puppet-nginx/pull/1673) ([bwitt](https://github.com/bwitt))
+- Drop puppet, update openvox minimum version to 8.19 [\#1648](https://github.com/voxpupuli/puppet-nginx/pull/1648) ([TheMeier](https://github.com/TheMeier))
+
+**Implemented enhancements:**
+
+- config parameters missing [\#1658](https://github.com/voxpupuli/puppet-nginx/issues/1658)
+- Add support, in locations, of parameters that are available in server and compatible with location [\#1206](https://github.com/voxpupuli/puppet-nginx/issues/1206)
+- Add ngx\_http\_dav\_module support for methods like PUT [\#816](https://github.com/voxpupuli/puppet-nginx/issues/816)
+- Real\_ip module not supported [\#796](https://github.com/voxpupuli/puppet-nginx/issues/796)
+- fastcgi\_cache\_path should allow a hash [\#727](https://github.com/voxpupuli/puppet-nginx/issues/727)
+- proxy\_cache\_valid should allow a hash [\#726](https://github.com/voxpupuli/puppet-nginx/issues/726)
+- remove whitespaces [\#1692](https://github.com/voxpupuli/puppet-nginx/pull/1692) ([sebastianrakel](https://github.com/sebastianrakel))
+- Add EL10 support [\#1688](https://github.com/voxpupuli/puppet-nginx/pull/1688) ([bastelfreak](https://github.com/bastelfreak))
+- Add Debian 13 support [\#1687](https://github.com/voxpupuli/puppet-nginx/pull/1687) ([bastelfreak](https://github.com/bastelfreak))
+- Add proxy\_next\_upstream to server resource and pass it to the location [\#1686](https://github.com/voxpupuli/puppet-nginx/pull/1686) ([sebastianrakel](https://github.com/sebastianrakel))
+- Add grpc support [\#1681](https://github.com/voxpupuli/puppet-nginx/pull/1681) ([yachub](https://github.com/yachub))
+- Add GB size unit support [\#1663](https://github.com/voxpupuli/puppet-nginx/pull/1663) ([artonix101](https://github.com/artonix101))
+- Add parameter `uwsgi_param` for default vhost in server resource [\#1662](https://github.com/voxpupuli/puppet-nginx/pull/1662) ([Heidistein](https://github.com/Heidistein))
+- add some missing directives: `variables_hash_bucket_size`, `variables_hash_max_size`, `proxy_headers_hash_max_size` [\#1659](https://github.com/voxpupuli/puppet-nginx/pull/1659) ([Enrice](https://github.com/Enrice))
+- Change proxy\_redirect parameter to Optional\[Variant\[Array\[String\],Str… [\#1650](https://github.com/voxpupuli/puppet-nginx/pull/1650) ([rgarifullin-bank131](https://github.com/rgarifullin-bank131))
+- Allow `ssl_verify_client` when only `ssl_trusted_cert` is set [\#1645](https://github.com/voxpupuli/puppet-nginx/pull/1645) ([ltning](https://github.com/ltning))
+- Add support for Ubuntu 24.04 "noble" [\#1641](https://github.com/voxpupuli/puppet-nginx/pull/1641) ([kenyon](https://github.com/kenyon))
+- Add ssl parameter to IPv6 listen directive [\#1632](https://github.com/voxpupuli/puppet-nginx/pull/1632) ([Cicco0](https://github.com/Cicco0))
+
+**Fixed bugs:**
+
+- Fix for \#1644 \(`ssl_verify_client` with only `ssl_trusted_certificate`\) breaks common use case [\#1646](https://github.com/voxpupuli/puppet-nginx/issues/1646)
+- Update passenger signing key [\#1682](https://github.com/voxpupuli/puppet-nginx/pull/1682) ([yachub](https://github.com/yachub))
+- Allow www in server name when using rewrite\_non\_www\_to\_www [\#1680](https://github.com/voxpupuli/puppet-nginx/pull/1680) ([yachub](https://github.com/yachub))
+
+**Closed issues:**
+
+- Nginx::Size should accept g or G for gigabytes [\#1656](https://github.com/voxpupuli/puppet-nginx/issues/1656)
+- Support `ssl_verify_client` when only `ssl_trusted_cert` is set [\#1644](https://github.com/voxpupuli/puppet-nginx/issues/1644)
+- Rework of nginx::resource::geo for proper networks listing [\#1170](https://github.com/voxpupuli/puppet-nginx/issues/1170)
+- nginx::log\_format does not get set with puppet 4 [\#1088](https://github.com/voxpupuli/puppet-nginx/issues/1088)
+- listen\_options and ipv6\_listen\_options doesn't have the same default value [\#874](https://github.com/voxpupuli/puppet-nginx/issues/874)
+- use\_default\_location behavior is undocumented and confusing/counterintuitive [\#544](https://github.com/voxpupuli/puppet-nginx/issues/544)
+
+**Merged pull requests:**
+
+- Use voxpupuli.org in examples [\#1685](https://github.com/voxpupuli/puppet-nginx/pull/1685) ([marcusdots](https://github.com/marcusdots))
+- Add missing `location` params [\#1675](https://github.com/voxpupuli/puppet-nginx/pull/1675) ([bwitt](https://github.com/bwitt))
+- Add docs and type for `use_default_location` [\#1674](https://github.com/voxpupuli/puppet-nginx/pull/1674) ([bwitt](https://github.com/bwitt))
+- Add `real_ip` module support [\#1671](https://github.com/voxpupuli/puppet-nginx/pull/1671) ([bwitt](https://github.com/bwitt))
+- Make `ipv6_listen_options` default to `listen_options` plus ipv6only [\#1670](https://github.com/voxpupuli/puppet-nginx/pull/1670) ([bwitt](https://github.com/bwitt))
+- Allow hash for `proxy_cache_valid` [\#1669](https://github.com/voxpupuli/puppet-nginx/pull/1669) ([bwitt](https://github.com/bwitt))
+- Add WebDAV support [\#1668](https://github.com/voxpupuli/puppet-nginx/pull/1668) ([bwitt](https://github.com/bwitt))
+- Fix `class_spec` acceptance test [\#1667](https://github.com/voxpupuli/puppet-nginx/pull/1667) ([bwitt](https://github.com/bwitt))
+- Allow `fastcgi_cache_path` to be a Hash [\#1665](https://github.com/voxpupuli/puppet-nginx/pull/1665) ([bwitt](https://github.com/bwitt))
+- Fix ssl verify client compat [\#1647](https://github.com/voxpupuli/puppet-nginx/pull/1647) ([ltning](https://github.com/ltning))
+
 ## [v7.0.1](https://github.com/voxpupuli/puppet-nginx/tree/v7.0.1) (2025-06-12)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v7.0.0...v7.0.1)
@@ -19,7 +78,7 @@ These should not affect the functionality of the module.
 **Breaking changes:**
 
 - Disable mail relay in nginx 1.14 [\#1634](https://github.com/voxpupuli/puppet-nginx/pull/1634) ([jstraw](https://github.com/jstraw))
-- Fix `apt-key` deprecated message [\#1610](https://github.com/voxpupuli/puppet-nginx/pull/1610) ([miluxhd](https://github.com/miluxhd))
+- Fix `apt-key` deprecated message [\#1610](https://github.com/voxpupuli/puppet-nginx/pull/1610) ([milad-zanganeh](https://github.com/milad-zanganeh))
 
 **Implemented enhancements:**
 
@@ -418,7 +477,7 @@ https://github.com/voxpupuli/puppet-nginx/pull/1385 changes the default behaviou
 - Automatically require SSL cert files in the server [\#1296](https://github.com/voxpupuli/puppet-nginx/pull/1296) ([ekohl](https://github.com/ekohl))
 - Update smartos support [\#1290](https://github.com/voxpupuli/puppet-nginx/pull/1290) ([joelgarboden](https://github.com/joelgarboden))
 - Allow multiple servers per location [\#1278](https://github.com/voxpupuli/puppet-nginx/pull/1278) ([SaschaDoering](https://github.com/SaschaDoering))
-- Add autoindex to ssl\_header too [\#1275](https://github.com/voxpupuli/puppet-nginx/pull/1275) ([bc-bjoern](https://github.com/bc-bjoern))
+- Add autoindex to ssl\_header too [\#1275](https://github.com/voxpupuli/puppet-nginx/pull/1275) ([epik0r](https://github.com/epik0r))
 - allow adding custom mime types while still using the module defaults [\#1268](https://github.com/voxpupuli/puppet-nginx/pull/1268) ([bryangwilliam](https://github.com/bryangwilliam))
 - Introduce two new optional proxy parameters [\#1256](https://github.com/voxpupuli/puppet-nginx/pull/1256) ([ruriky](https://github.com/ruriky))
 - initial support for snippets [\#1231](https://github.com/voxpupuli/puppet-nginx/pull/1231) ([bryangwilliam](https://github.com/bryangwilliam))
