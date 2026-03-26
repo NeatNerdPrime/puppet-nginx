@@ -1141,7 +1141,7 @@ Data type: `Nginx::Time`
 
 
 
-Default value: `'60s'`
+Default value: `'90s'`
 
 ##### <a name="-nginx--proxy_redirect"></a>`proxy_redirect`
 
@@ -1157,7 +1157,7 @@ Data type: `Nginx::Time`
 
 
 
-Default value: `'60s'`
+Default value: `'90s'`
 
 ##### <a name="-nginx--proxy_set_header"></a>`proxy_set_header`
 

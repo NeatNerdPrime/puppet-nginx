@@ -339,9 +339,9 @@ class nginx (
   Optional[Integer] $proxy_headers_hash_bucket_size = undef,
   Optional[Integer] $proxy_headers_hash_max_size = undef,
   Optional[String] $proxy_http_version = undef,
-  Nginx::Time $proxy_read_timeout = '60s',
+  Nginx::Time $proxy_read_timeout = '90s',
   Optional[Variant[Array[String], String]] $proxy_redirect = undef,
-  Nginx::Time $proxy_send_timeout = '60s',
+  Nginx::Time $proxy_send_timeout = '90s',
   Array $proxy_set_header = [
     'Host $host',
     'X-Real-IP $remote_addr',
