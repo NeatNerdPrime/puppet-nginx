@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.1.0](https://github.com/voxpupuli/puppet-nginx/tree/v8.1.0) (2026-05-20)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v8.0.0...v8.1.0)
+
+**Implemented enhancements:**
+
+- puppetlabs/concat: Allow 10.x [\#1698](https://github.com/voxpupuli/puppet-nginx/pull/1698) ([bastelfreak](https://github.com/bastelfreak))
+- add real IP support to ssl server [\#1696](https://github.com/voxpupuli/puppet-nginx/pull/1696) ([saz](https://github.com/saz))
+
 ## [v8.0.0](https://github.com/voxpupuli/puppet-nginx/tree/v8.0.0) (2026-03-26)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v7.0.1...v8.0.0)
@@ -43,6 +52,7 @@ These should not affect the functionality of the module.
 
 **Closed issues:**
 
+- Don't set unnecessary explicit defaults [\#1660](https://github.com/voxpupuli/puppet-nginx/issues/1660)
 - Nginx::Size should accept g or G for gigabytes [\#1656](https://github.com/voxpupuli/puppet-nginx/issues/1656)
 - Support `ssl_verify_client` when only `ssl_trusted_cert` is set [\#1644](https://github.com/voxpupuli/puppet-nginx/issues/1644)
 - Rework of nginx::resource::geo for proper networks listing [\#1170](https://github.com/voxpupuli/puppet-nginx/issues/1170)
