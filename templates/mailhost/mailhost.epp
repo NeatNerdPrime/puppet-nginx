@@ -19,7 +19,7 @@ server {
   listen                <%= $ip %>:<%= $listen_port %><% if $listen_options { %> <%= $listen_options %><% } %>;
 <%- } -%>
 <%- $ipv6_listen_ip.each |$ipv6| { -%>
-  listen                [<%= $ipv6 %>]:<%= $ipv6_listen_port %> <% if $ipv6_listen_options { %><%= $ipv6_listen_options %><% } %>;
+  listen                [<%= $ipv6 %>]:<%= $ipv6_listen_port %><% if $ipv6_listen_options { %> <%= $ipv6_listen_options %><% } %>;
 <%- } -%>
 <%= $mailhost_common -%>
 

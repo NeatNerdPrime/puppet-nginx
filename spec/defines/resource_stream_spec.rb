@@ -80,25 +80,25 @@ describe 'nginx::resource::streamhost' do
               title: 'should enable IPv6',
               attr: 'ipv6_enable',
               value: true,
-              match: %r{\s+listen\s+\[::\]:80 ipv6only=on;},
+              match: %r{\s+listen\s+\[::\]:80;},
             },
             {
               title: 'should not enable IPv6',
               attr: 'ipv6_enable',
               value: false,
-              notmatch: %r{\slisten \[::\]:80 ipv6only=on;},
+              notmatch: %r{\slisten \[::\]:80;},
             },
             {
               title: 'should set the IPv6 listen IP',
               attr: 'ipv6_listen_ip',
               value: '2001:0db8:85a3:0000:0000:8a2e:0370:7334',
-              match: %r{\s+listen\s+\[2001:0db8:85a3:0000:0000:8a2e:0370:7334\]:80 ipv6only=on;},
+              match: %r{\s+listen\s+\[2001:0db8:85a3:0000:0000:8a2e:0370:7334\]:80;},
             },
             {
               title: 'should set the IPv6 listen port',
               attr: 'ipv6_listen_port',
               value: 45,
-              match: %r{\s+listen\s+\[::\]:45 ipv6only=on;},
+              match: %r{\s+listen\s+\[::\]:45;},
             },
             {
               title: 'should set the IPv6 listen options',
@@ -158,8 +158,8 @@ describe 'nginx::resource::streamhost' do
             context 'when listen_options is set but ipv6_listen_options is not' do
               let(:params) { default_params.merge(listen_options: 'reuseport') }
 
-              it 'inherits listen_options with ipv6only=on appended' do
-                is_expected.to contain_concat__fragment("#{title}-header").with_content(%r{\s+listen\s+\[::\]:80 reuseport ipv6only=on;})
+              it 'inherits listen_options' do
+                is_expected.to contain_concat__fragment("#{title}-header").with_content(%r{\s+listen\s+\[::\]:80 reuseport;})
               end
             end
 
@@ -174,8 +174,8 @@ describe 'nginx::resource::streamhost' do
             context 'when neither listen_options nor ipv6_listen_options is set' do
               let(:params) { default_params }
 
-              it 'uses ipv6only=on' do
-                is_expected.to contain_concat__fragment("#{title}-header").with_content(%r{\s+listen\s+\[::\]:80 ipv6only=on;})
+              it 'adds nothing' do
+                is_expected.to contain_concat__fragment("#{title}-header").with_content(%r{\s+listen\s+\[::\]:80;})
               end
             end
           end

@@ -30,9 +30,7 @@
 # @param ipv6_listen_port
 #   Default IPv6 Port for NGINX to listen with this server on. Defaults to TCP 80
 # @param ipv6_listen_options
-#   Extra options for listen directive like 'default' to catchall. Defaults to
-#   'ipv6only=on'. If listen_options is set, those options are inherited with
-#   'ipv6only=on' appended.
+#   Extra options for listen directive like 'default' to catchall.
 # @param add_header
 #   Adds headers to the HTTP response when response code is equal to 200, 204,
 #   301, 302 or 304.
@@ -93,7 +91,7 @@
 # @param proxy_busy_buffers_size
 #   Sets the total size of buffers that can be busy sending a response to the
 #   client while the response is not yet fully read.
-# @param proxy_next_upstream 
+# @param proxy_next_upstream
 #   Specify cases a request should be passed to the next server in the upstream.
 # @param grpc
 #   Sets the gRPC server address (`grpc_pass`)
@@ -336,7 +334,7 @@ define nginx::resource::server (
   Boolean $ipv6_enable = false,
   Variant[Array, String] $ipv6_listen_ip = '::',
   Stdlib::Port $ipv6_listen_port = $listen_port,
-  Optional[String[1]] $ipv6_listen_options = undef,
+  Optional[String[0]] $ipv6_listen_options = $listen_options,
   Hash $add_header = {},
   Boolean $ssl = false,
   Boolean $ssl_listen_option = true,
@@ -476,18 +474,6 @@ define nginx::resource::server (
 
   if $rewrite_www_to_non_www == true and $rewrite_non_www_to_www == true {
     fail('You must not set both $rewrite_www_to_non_www and $rewrite_non_www_to_www to true')
-  }
-
-  # Compute effective ipv6_listen_options:
-  # - Use ipv6_listen_options if set
-  # - Otherwise use listen_options with ipv6only=on appended
-  # - Otherwise use 'ipv6only=on'
-  $_ipv6_listen_options = $ipv6_listen_options ? {
-    undef   => $listen_options ? {
-      undef   => 'ipv6only=on',
-      default => "${listen_options} ipv6only=on",
-    },
-    default => $ipv6_listen_options,
   }
 
   # Variables
