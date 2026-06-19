@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.1.1](https://github.com/voxpupuli/puppet-nginx/tree/v8.1.1) (2026-06-19)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v8.1.0...v8.1.1)
+
+**Fixed bugs:**
+
+- Fix default IPv6 listen\_options clash [\#1703](https://github.com/voxpupuli/puppet-nginx/pull/1703) ([smortex](https://github.com/smortex))
+
+**Closed issues:**
+
+- `ipv6_listen_options` forces ipv6only on all vhosts [\#1700](https://github.com/voxpupuli/puppet-nginx/issues/1700)
+- Duplicate listen options when using IPv6 with www. redirect [\#1293](https://github.com/voxpupuli/puppet-nginx/issues/1293)
+
 ## [v8.1.0](https://github.com/voxpupuli/puppet-nginx/tree/v8.1.0) (2026-05-20)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v8.0.0...v8.1.0)
