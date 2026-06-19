@@ -18,9 +18,7 @@
 # @param ipv6_listen_port
 #   Default IPv6 Port for NGINX to listen with this streamhost on.
 # @param ipv6_listen_options
-#   Extra options for listen directive like 'default' to catchall. Defaults to
-#   'ipv6only=on'. If listen_options is set, those options are inherited with
-#   'ipv6only=on' appended.
+#   Extra options for listen directive like 'default' to catchall.
 # @param proxy
 #   Proxy server(s) for the root location to connect to. Accepts a single
 #   value, can be used in conjunction with nginx::resource::upstream
@@ -57,7 +55,7 @@ define nginx::resource::streamhost (
   Boolean $ipv6_enable = false,
   Variant[Array, String] $ipv6_listen_ip = '::',
   Integer $ipv6_listen_port = $listen_port,
-  Optional[String[1]] $ipv6_listen_options = undef,
+  Optional[String[0]] $ipv6_listen_options = $listen_options,
   $proxy = undef,
   Optional[Nginx::Time] $proxy_read_timeout = $nginx::proxy_read_timeout,
   Optional[Nginx::Time] $proxy_connect_timeout = $nginx::proxy_connect_timeout,
@@ -70,18 +68,6 @@ define nginx::resource::streamhost (
 ) {
   if !defined(Class['nginx']) {
     fail('You must include the nginx base class before using any defined resources')
-  }
-
-  # Compute effective ipv6_listen_options:
-  # - Use ipv6_listen_options if set
-  # - Otherwise use listen_options with ipv6only=on appended
-  # - Otherwise use 'ipv6only=on'
-  $_ipv6_listen_options = $ipv6_listen_options ? {
-    undef   => $listen_options ? {
-      undef   => 'ipv6only=on',
-      default => "${listen_options} ipv6only=on",
-    },
-    default => $ipv6_listen_options,
   }
 
   # Variables
