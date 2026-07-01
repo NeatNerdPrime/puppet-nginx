@@ -1982,6 +1982,8 @@ The following parameters are available in the `nginx::resource::location` define
 * [`proxy_pass_header`](#-nginx--resource--location--proxy_pass_header)
 * [`proxy_ignore_header`](#-nginx--resource--location--proxy_ignore_header)
 * [`proxy_next_upstream`](#-nginx--resource--location--proxy_next_upstream)
+* [`proxy_next_upstream_tries`](#-nginx--resource--location--proxy_next_upstream_tries)
+* [`proxy_next_upstream_timeout`](#-nginx--resource--location--proxy_next_upstream_timeout)
 * [`grpc`](#-nginx--resource--location--grpc)
 * [`fastcgi`](#-nginx--resource--location--fastcgi)
 * [`fastcgi_param`](#-nginx--resource--location--fastcgi_param)
@@ -2248,6 +2250,22 @@ Default value: `$nginx::proxy_ignore_header`
 Data type: `Optional[String]`
 
 Specify cases a request should be passed to the next server in the upstream.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--proxy_next_upstream_tries"></a>`proxy_next_upstream_tries`
+
+Data type: `Optional[Integer]`
+
+Specify the limits the number of possible tries for passing a request to the next server.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--location--proxy_next_upstream_timeout"></a>`proxy_next_upstream_timeout`
+
+Data type: `Optional[Nginx::Time]`
+
+Specify the limits the time during which a request can be passed to the next server
 
 Default value: `undef`
 
@@ -3509,6 +3527,8 @@ The following parameters are available in the `nginx::resource::server` defined 
 * [`proxy_max_temp_file_size`](#-nginx--resource--server--proxy_max_temp_file_size)
 * [`proxy_busy_buffers_size`](#-nginx--resource--server--proxy_busy_buffers_size)
 * [`proxy_next_upstream`](#-nginx--resource--server--proxy_next_upstream)
+* [`proxy_next_upstream_tries`](#-nginx--resource--server--proxy_next_upstream_tries)
+* [`proxy_next_upstream_timeout`](#-nginx--resource--server--proxy_next_upstream_timeout)
 * [`grpc`](#-nginx--resource--server--grpc)
 * [`resolver`](#-nginx--resource--server--resolver)
 * [`fastcgi`](#-nginx--resource--server--fastcgi)
@@ -3935,6 +3955,22 @@ Default value: `undef`
 Data type: `Optional[String[1]]`
 
 Specify cases a request should be passed to the next server in the upstream.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--proxy_next_upstream_tries"></a>`proxy_next_upstream_tries`
+
+Data type: `Optional[Integer]`
+
+Specify the limits the number of possible tries for passing a request to the next server.
+
+Default value: `undef`
+
+##### <a name="-nginx--resource--server--proxy_next_upstream_timeout"></a>`proxy_next_upstream_timeout`
+
+Data type: `Optional[Nginx::Time]`
+
+Specify the limits the time during which a request can be passed to the next server
 
 Default value: `undef`
 

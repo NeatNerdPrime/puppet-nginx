@@ -55,6 +55,10 @@
 #   Array of server headers to ignore
 # @param proxy_next_upstream
 #   Specify cases a request should be passed to the next server in the upstream.
+# @param proxy_next_upstream_tries
+#   Specify the limits the number of possible tries for passing a request to the next server.
+# @param proxy_next_upstream_timeout
+#   Specify the limits the time during which a request can be passed to the next server
 # @param grpc
 #   Sets the gRPC server address (`grpc_pass`)
 # @param fastcgi
@@ -307,6 +311,8 @@ define nginx::resource::location (
   Array $proxy_pass_header = $nginx::proxy_pass_header,
   Array $proxy_ignore_header = $nginx::proxy_ignore_header,
   Optional[String] $proxy_next_upstream = undef,
+  Optional[Integer] $proxy_next_upstream_tries = undef,
+  Optional[Nginx::Time] $proxy_next_upstream_timeout = undef,
   Optional[String] $grpc = undef,
   Optional[String] $fastcgi = undef,
   Optional[String] $fastcgi_index = undef,
