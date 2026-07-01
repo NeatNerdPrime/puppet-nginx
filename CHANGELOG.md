@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## [v8.2.0](https://github.com/voxpupuli/puppet-nginx/tree/v8.2.0) (2026-07-01)
+
+[Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v8.1.1...v8.2.0)
+
+**Implemented enhancements:**
+
+- Implement proxy\_next\_upstream\_tries and proxy\_next\_upstream\_timeout [\#1705](https://github.com/voxpupuli/puppet-nginx/pull/1705) ([sebastianrakel](https://github.com/sebastianrakel))
+
 ## [v8.1.1](https://github.com/voxpupuli/puppet-nginx/tree/v8.1.1) (2026-06-19)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-nginx/compare/v8.1.0...v8.1.1)
