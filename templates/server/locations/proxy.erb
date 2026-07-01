@@ -90,4 +90,10 @@
 <% if @proxy_next_upstream -%>
     proxy_next_upstream      <%= @proxy_next_upstream %>;
 <% end -%>
+<% if @proxy_next_upstream_tries -%>
+    proxy_next_upstream_tries      <%= @proxy_next_upstream_tries %>;
+<% end -%>
+<% if @proxy_next_upstream_timeout -%>
+    proxy_next_upstream_timeout      <%= @proxy_next_upstream_timeout %>;
+<% end -%>
 <% end -%>
